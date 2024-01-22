@@ -47,6 +47,7 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.dropSelf(ModBlocks.VOID_TRAPDOOR.get());
         this.dropSelf(ModBlocks.VOID_FENCE.get());
         this.dropSelf(ModBlocks.VOID_FENCE_GATE.get());
+        this.dropSelf(ModBlocks.VOID_WALL.get());
 
         this.add(ModBlocks.VOID_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.VOID_SLAB.get()));

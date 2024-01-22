@@ -99,6 +99,7 @@ public class RotvMod {
             event.accept(ModBlocks.VOID_FENCE_GATE);
             event.accept(ModBlocks.VOID_DOOR);
             event.accept(ModBlocks.VOID_TRAPDOOR);
+            event.accept(ModBlocks.VOID_WALL);
         }
     }
 

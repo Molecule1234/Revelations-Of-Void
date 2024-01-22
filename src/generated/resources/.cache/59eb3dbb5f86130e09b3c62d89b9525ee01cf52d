@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-22T13:28:00.7176604	Loot Tables
+// 1.20.1	2024-01-22T13:41:36.3894474	Loot Tables
 4e77027167c7b9349fbf063dab237ac3622ed0fb data/rotv/loot_tables/blocks/potted_slime_flower.json
 395a0fcb4b73a5a3716565d2ca8e7424f4aeefbd data/rotv/loot_tables/blocks/potted_void_flower.json
 3344be6015b147a23359cce6df85bca7e6f7a2f1 data/rotv/loot_tables/blocks/slime_flower.json
@@ -18,6 +18,7 @@ de9df4b1fd5942ca97c940896a85a2c07ab35595 data/rotv/loot_tables/blocks/void_sign.
 73613ccd930f1d9cad712d15de71cdb21e39e1ce data/rotv/loot_tables/blocks/void_slab.json
 910d4de8546dfa06c3b8bde8875a96823f7c9f87 data/rotv/loot_tables/blocks/void_stairs.json
 933ee245a2cce450f21e5eb118f52c6794f126d9 data/rotv/loot_tables/blocks/void_trapdoor.json
+8af9db11a6030f9fde1af5e157a3be8e4644672d data/rotv/loot_tables/blocks/void_wall.json
 08fbaff78c30216e0b168c7938f6dccc3d6bbf5d data/rotv/loot_tables/blocks/void_wall_hanging_sign.json
 01f8617d13fe0b0021ba7e377e61d44142a48854 data/rotv/loot_tables/blocks/void_wall_sign.json
 236d98a0a9854ea0c148ab64da2454862184dc96 data/rotv/loot_tables/blocks/void_wood.json

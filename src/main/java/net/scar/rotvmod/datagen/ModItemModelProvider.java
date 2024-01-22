@@ -53,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.VOID_FENCE, ModBlocks.VOID_PLANKS);
         buttonItem(ModBlocks.VOID_BUTTON, ModBlocks.VOID_PLANKS);
+        wallItem(ModBlocks.VOID_WALL, ModBlocks.VOID_PLANKS);
 
         evenSimplerBlockItem(ModBlocks.VOID_STAIRS);
         evenSimplerBlockItem(ModBlocks.VOID_SLAB);

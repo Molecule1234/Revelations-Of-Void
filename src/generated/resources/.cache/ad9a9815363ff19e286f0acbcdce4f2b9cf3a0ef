@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-22T13:28:00.7176604	Block States: rotv
+// 1.20.1	2024-01-22T13:44:18.5329245	Block States: rotv
 aa31061a3e69a23a8a92328de60b7a922345f151 assets/rotv/blockstates/potted_slime_flower.json
 89637531a9afe42760e081a1771ff537dfd29172 assets/rotv/blockstates/potted_void_flower.json
 1c7523fa09e9e7b726f52344fd374fefbe419e4b assets/rotv/blockstates/slime_flower.json
@@ -18,6 +18,7 @@ de45f7c9e4b36fc82ea2bac293316a780c791c3b assets/rotv/blockstates/void_pressure_p
 b67b3c2dd23def76252cc23bb8d460b1b2fa4e87 assets/rotv/blockstates/void_slab.json
 b2a1c95f80d6b62318fe8bd22f484dd022f74129 assets/rotv/blockstates/void_stairs.json
 3a39ba053b2ad30d42c63079ae45d39ed0b95393 assets/rotv/blockstates/void_trapdoor.json
+8643a2814e2fe0785cc3eb0f00b2d98d3e46a392 assets/rotv/blockstates/void_wall.json
 3ed4511e4d9fab3147a20e87623e5b0a6ff0daba assets/rotv/blockstates/void_wall_hanging_sign.json
 101c4ab038122494f955271d96b407121d90d90c assets/rotv/blockstates/void_wall_sign.json
 23d46693d00a7fefef45ff10a839e7246b619fcc assets/rotv/blockstates/void_wood.json
@@ -61,6 +62,9 @@ ae37afa6574616002b6162e07a9bd701be6c162b assets/rotv/models/block/void_slab_top.
 85be89e6c91659154cb7e32bebaa2e7c04124e55 assets/rotv/models/block/void_trapdoor_bottom.json
 8a06db4b23eae48fbe954e17d66054a29adde186 assets/rotv/models/block/void_trapdoor_open.json
 8f8cc44b09a0ed95078c4f7de7fb766f523871a2 assets/rotv/models/block/void_trapdoor_top.json
+65bd1789d9c7c3bac4c6992e86376e92d9611a49 assets/rotv/models/block/void_wall_post.json
+b67592905ca84c76eecec9f83ddbb8768623f605 assets/rotv/models/block/void_wall_side.json
+d6f533ca67d1bc70a3f29cf0c86cbec48323411b assets/rotv/models/block/void_wall_side_tall.json
 37c57a189c0dc2b18afa8c637dadd2eeb96c9a95 assets/rotv/models/block/void_wood.json
 9632c40f388b4b35bdcd28cebabd57c9403780e4 assets/rotv/models/block/void_wood_horizontal.json
 70640a52243abdf3cde6a4eba5210cf74d3409ef assets/rotv/models/item/potted_slime_flower.json

@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-22T13:28:00.7166616	Item Models: rotv
+// 1.20.1	2024-01-22T13:41:36.3874471	Item Models: rotv
 41acc0a3d423bc5eb6722a0fcefa6aabec460b28 assets/rotv/models/item/ancient_tome.json
 3b1f89767c13ae183e1b4f13af61475305d7dda3 assets/rotv/models/item/clear_rune.json
 3f4b2f13ae23a6e014f796a8ade81810e59238ec assets/rotv/models/item/imbued_brick.json
@@ -25,3 +25,4 @@ f2f4eaf3640e46cce93efcaa2e7d5ba74e79c636 assets/rotv/models/item/void_door.json
 13005db6ae1d8828a58b79d148d8e4d2f83f51bd assets/rotv/models/item/void_slab.json
 a41511043f81e4f6e71a095d0297dd86db19bd34 assets/rotv/models/item/void_stairs.json
 a487681d3dc44c872bdcecc36543eb6b98d775ad assets/rotv/models/item/void_trapdoor.json
+bc3eb29770b899ee47310df82af9a812954604ea assets/rotv/models/item/void_wall.json

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rotv:block/void_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rotv:block/void_log"
+    },
+    "axis=z": {
+      "model": "rotv:block/void_log_horizontal",
+      "x": 90
+    }
+  }
+}

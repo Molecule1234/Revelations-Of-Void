@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rotv:block/stripped_void_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rotv:block/stripped_void_wood"
+    },
+    "axis=z": {
+      "model": "rotv:block/stripped_void_wood_horizontal",
+      "x": 90
+    }
+  }
+}

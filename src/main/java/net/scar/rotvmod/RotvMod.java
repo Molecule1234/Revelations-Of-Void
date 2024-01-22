@@ -11,6 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.item.ModCreativeTabs;
+import net.scar.rotvmod.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -21,6 +24,11 @@ public class RotvMod {
 
     public RotvMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModCreativeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -34,7 +42,35 @@ public class RotvMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey() == ModCreativeTabs.MAIN_TAB.getKey()) {
+            event.accept(ModItems.ANCIENT_TOME);
 
+            // Ingots
+            event.accept(ModItems.INGOT_ALTURIUM);
+            event.accept(ModItems.INGOT_DEORIUM);
+            event.accept(ModItems.INGOT_OVERFLOWN_DEORIUM);
+
+            // Nuggets
+            event.accept(ModItems.NUGGET_DEORIUM);
+            event.accept(ModItems.NUGGET_ALTURIUM);
+            event.accept(ModItems.NUGGET_OVERFLOWN_DEORIUM);
+
+            // Raws
+            event.accept(ModItems.RAW_ALTURIUM);
+            event.accept(ModItems.RAW_DEORIUM);
+            event.accept(ModItems.RAW_OVERFLOWN_DEORIUM);
+
+            event.accept(ModItems.CLEAR_RUNE);
+            event.accept(ModItems.IMBUED_BRICK);
+
+            // Wood
+            event.accept(ModBlocks.VOID_LOG);
+            event.accept(ModBlocks.STRIPPED_VOID_LOG);
+            event.accept(ModBlocks.VOID_WOOD);
+            event.accept(ModBlocks.STRIPPED_VOID_WOOD);
+            event.accept(ModBlocks.VOID_PLANKS);
+            event.accept(ModBlocks.VOID_LEAVES);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

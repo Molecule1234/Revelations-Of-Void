@@ -1,0 +1,23 @@
+// 1.20.1	2024-01-22T11:18:38.9663587	Block States: rotv
+d2d1d8bb43d76f06ca636d6e964e7fc07e2448f6 assets/rotv/blockstates/stripped_void_log.json
+a501f17a41c2f3d191a864ac9d837bbba74f7895 assets/rotv/blockstates/stripped_void_wood.json
+e4a16c89090d5cc06087bfacdfcf1d0c8a725ee7 assets/rotv/blockstates/void_leaves.json
+463be7a9385e95666553771c1f27cbbbf434b908 assets/rotv/blockstates/void_log.json
+f8e1dd737fe0e85c86617bf57eac9b2f997ab69b assets/rotv/blockstates/void_planks.json
+23d46693d00a7fefef45ff10a839e7246b619fcc assets/rotv/blockstates/void_wood.json
+dbacdf1aed86f7289bcf3533fa4e85120093b642 assets/rotv/models/block/stripped_void_log.json
+ddce0720471ca24fa8765114b45f9b8480141193 assets/rotv/models/block/stripped_void_log_horizontal.json
+6fd66d75d75ddce5b8651d61640edfd97c9e26b5 assets/rotv/models/block/stripped_void_wood.json
+eb66a39d502e264e7741137d7d48464201bafc9a assets/rotv/models/block/stripped_void_wood_horizontal.json
+0c44f46e91ad3f0a2cc592b497555f13dadd6b7b assets/rotv/models/block/void_leaves.json
+d5f1985c9850403fe5977295b974554a5c4c0467 assets/rotv/models/block/void_log.json
+e03d4c6ab53d59e1d837d4cbfb65bcdf5975cac3 assets/rotv/models/block/void_log_horizontal.json
+fa6ea3f412b6854513b05d7ba2ba0bec23ccca64 assets/rotv/models/block/void_planks.json
+37c57a189c0dc2b18afa8c637dadd2eeb96c9a95 assets/rotv/models/block/void_wood.json
+9632c40f388b4b35bdcd28cebabd57c9403780e4 assets/rotv/models/block/void_wood_horizontal.json
+4411274e7349ac58911a0a0caf1ee4b50ff9afb1 assets/rotv/models/item/stripped_void_log.json
+a0c5681ea65282442642ea15d42ebe25e331192f assets/rotv/models/item/stripped_void_wood.json
+04d6b23510c160e94a045dbfbfe2b639ddfc036c assets/rotv/models/item/void_leaves.json
+6aac579edd0ec06ae431fc1841b5c5b9941ecc6d assets/rotv/models/item/void_log.json
+169f46f9a555abc07031fb90ed73fc3259f9ffdf assets/rotv/models/item/void_planks.json
+5ede81187948bb72a82af092df91b6a5878e9c5b assets/rotv/models/item/void_wood.json

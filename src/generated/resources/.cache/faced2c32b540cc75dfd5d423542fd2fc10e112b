@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-22T10:17:21.6353385	Item Models: rotv
+// 1.20.1	2024-01-22T13:28:00.7166616	Item Models: rotv
 41acc0a3d423bc5eb6722a0fcefa6aabec460b28 assets/rotv/models/item/ancient_tome.json
 3b1f89767c13ae183e1b4f13af61475305d7dda3 assets/rotv/models/item/clear_rune.json
 3f4b2f13ae23a6e014f796a8ade81810e59238ec assets/rotv/models/item/imbued_brick.json
@@ -11,3 +11,17 @@
 51a1e1ada70baa9109e72c9599fb1aff380270e4 assets/rotv/models/item/raw_alturium.json
 22ae594554fa5f2cb3c79311da38f59f60955f6f assets/rotv/models/item/raw_deorium.json
 62b980f4897c3d424ca8dd039cf381c47369558f assets/rotv/models/item/raw_overflown_deorium.json
+0ef8321010cea1ee7cc910eb1493d619c614ad91 assets/rotv/models/item/slime_flower.json
+f46175f416cdfaea06af4a8873543decf0407ee2 assets/rotv/models/item/void_boat.json
+0670d35668debf80a39190fb5468cd166458211a assets/rotv/models/item/void_button.json
+8b72a688f050a119c7fc78af9c7767d29aea6ab7 assets/rotv/models/item/void_chest_boat.json
+f2f4eaf3640e46cce93efcaa2e7d5ba74e79c636 assets/rotv/models/item/void_door.json
+20c217da31d995c9e10d1f1cdc4bf7af2a171f9e assets/rotv/models/item/void_fence.json
+19c5fd07310e42c0460699c9dbc0d61361d06b1a assets/rotv/models/item/void_fence_gate.json
+612ad2a5fe4f046647f2939e17fcbb5adc0239a1 assets/rotv/models/item/void_flower.json
+19c2ddd4906435ac5f57e86751ce4a1749e02228 assets/rotv/models/item/void_hanging_sign.json
+957000476af198c7ad21eca3e18e8e9b8b7bdb52 assets/rotv/models/item/void_pressure_plate.json
+16369316af8688a9db4ae2d664a6750ee2ad0416 assets/rotv/models/item/void_sign.json
+13005db6ae1d8828a58b79d148d8e4d2f83f51bd assets/rotv/models/item/void_slab.json
+a41511043f81e4f6e71a095d0297dd86db19bd34 assets/rotv/models/item/void_stairs.json
+a487681d3dc44c872bdcecc36543eb6b98d775ad assets/rotv/models/item/void_trapdoor.json

@@ -1,6 +1,9 @@
 package net.scar.rotvmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -12,9 +15,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.client.renders.ModBoatRenderer;
+import net.scar.rotvmod.entity.ModBlockEntities;
+import net.scar.rotvmod.entity.ModEntities;
 import net.scar.rotvmod.item.ModCreativeTabs;
 import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.util.ModWoodTypes;
 import org.slf4j.Logger;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RotvMod.MOD_ID)
@@ -28,7 +36,11 @@ public class RotvMod {
         ModCreativeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
+
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -37,7 +49,10 @@ public class RotvMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.VOID_FLOWER.getId(), ModBlocks.POTTED_VOID_FLOWER);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SLIME_FLOWER.getId(), ModBlocks.POTTED_SLIME_FLOWER);
+        });
     }
 
     // Add the example block item to the building blocks tab
@@ -63,13 +78,27 @@ public class RotvMod {
             event.accept(ModItems.CLEAR_RUNE);
             event.accept(ModItems.IMBUED_BRICK);
 
-            // Wood
+            // Void
             event.accept(ModBlocks.VOID_LOG);
             event.accept(ModBlocks.STRIPPED_VOID_LOG);
             event.accept(ModBlocks.VOID_WOOD);
             event.accept(ModBlocks.STRIPPED_VOID_WOOD);
             event.accept(ModBlocks.VOID_PLANKS);
+            event.accept(ModBlocks.VOID_SIGN);
+            event.accept(ModBlocks.VOID_HANGING_SIGN);
             event.accept(ModBlocks.VOID_LEAVES);
+            event.accept(ModItems.VOID_BOAT);
+            event.accept(ModItems.VOID_CHEST_BOAT);
+            event.accept(ModBlocks.VOID_FLOWER);
+            event.accept(ModBlocks.SLIME_FLOWER);
+            event.accept(ModBlocks.VOID_STAIRS);
+            event.accept(ModBlocks.VOID_SLAB);
+            event.accept(ModBlocks.VOID_BUTTON);
+            event.accept(ModBlocks.VOID_PRESSURE_PLATE);
+            event.accept(ModBlocks.VOID_FENCE);
+            event.accept(ModBlocks.VOID_FENCE_GATE);
+            event.accept(ModBlocks.VOID_DOOR);
+            event.accept(ModBlocks.VOID_TRAPDOOR);
         }
     }
 
@@ -84,6 +113,10 @@ public class RotvMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            Sheets.addWoodType(ModWoodTypes.VOID);
+
+            EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+            EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
         }
     }

@@ -1,13 +1,12 @@
 package net.scar.rotvmod.block;
 
 import net.minecraft.core.Direction;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +16,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.scar.rotvmod.util.ModWoodTypes;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.sounds.SoundEvents;
 
 import java.util.function.Supplier;
 
@@ -32,6 +34,28 @@ public class ModBlocks {
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).strength(3f)));
     public static final RegistryObject<Block> STRIPPED_VOID_WOOD = registerBlock("stripped_void_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).strength(3f)));
+
+    public static final RegistryObject<Block> VOID_SIGN = BLOCKS.register("void_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VOID));
+    public static final RegistryObject<Block> VOID_WALL_SIGN = BLOCKS.register("void_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.VOID));
+
+    public static final RegistryObject<Block> VOID_HANGING_SIGN = BLOCKS.register("void_hanging_sign",
+            () -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), ModWoodTypes.VOID));
+    public static final RegistryObject<Block> VOID_WALL_HANGING_SIGN = BLOCKS.register("void_wall_hanging_sign",
+            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), ModWoodTypes.VOID));
+
+    public static final RegistryObject<Block> VOID_FLOWER = registerBlock("void_flower",
+            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 0, BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission()));
+    public static final RegistryObject<Block> POTTED_VOID_FLOWER = BLOCKS.register("potted_void_flower",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.VOID_FLOWER,
+                    BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
+
+    public static final RegistryObject<Block> SLIME_FLOWER = registerBlock("slime_flower",
+            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 0, BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission()));
+    public static final RegistryObject<Block> POTTED_SLIME_FLOWER = BLOCKS.register("potted_slime_flower",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.SLIME_FLOWER,
+                    BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
 
     public static final RegistryObject<Block> VOID_PLANKS = registerBlock("void_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
@@ -67,6 +91,32 @@ public class ModBlocks {
                     return 30;
                 }
             });
+
+
+    public static final RegistryObject<Block> VOID_STAIRS = registerBlock("void_stairs",
+            () -> new StairBlock(() -> ModBlocks.VOID_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> VOID_SLAB = registerBlock("void_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> VOID_BUTTON = registerBlock("void_button",
+            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.WOOD),
+                    BlockSetType.OAK, 10, true));
+    public static final RegistryObject<Block> VOID_PRESSURE_PLATE = registerBlock("void_pressure_plate",
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).sound(SoundType.WOOD),
+                    BlockSetType.OAK));
+
+    public static final RegistryObject<Block> VOID_FENCE = registerBlock("void_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> VOID_FENCE_GATE = registerBlock("void_fence_gate",
+            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE).sound(SoundType.WOOD), SoundEvents.CHAIN_PLACE, SoundEvents.ANVIL_BREAK));
+
+    public static final RegistryObject<Block> VOID_DOOR = registerBlock("void_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).sound(SoundType.WOOD).noOcclusion(), BlockSetType.ACACIA));
+    public static final RegistryObject<Block> VOID_TRAPDOOR = registerBlock("void_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).sound(SoundType.WOOD).noOcclusion(), BlockSetType.ACACIA));
+
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

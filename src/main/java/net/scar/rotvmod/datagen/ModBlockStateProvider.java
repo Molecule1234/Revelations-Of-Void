@@ -2,8 +2,7 @@ package net.scar.rotvmod.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -35,6 +34,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VOID_PLANKS);
 
         leavesBlock(ModBlocks.VOID_LEAVES);
+
+        signBlock(((StandingSignBlock) ModBlocks.VOID_SIGN.get()), ((WallSignBlock) ModBlocks.VOID_WALL_SIGN.get()),
+                blockTexture(ModBlocks.VOID_PLANKS.get()));
+
+        hangingSignBlock(ModBlocks.VOID_HANGING_SIGN.get(), ModBlocks.VOID_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.VOID_PLANKS.get()));
+
+        simpleBlockWithItem(ModBlocks.VOID_FLOWER.get(), models().cross(blockTexture(ModBlocks.VOID_FLOWER.get()).getPath(),
+                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.POTTED_VOID_FLOWER.get(), models().singleTexture("potted_void_flower", new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+
+        simpleBlockWithItem(ModBlocks.SLIME_FLOWER.get(), models().cross(blockTexture(ModBlocks.SLIME_FLOWER.get()).getPath(),
+                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.POTTED_SLIME_FLOWER.get(), models().singleTexture("potted_slime_flower", new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
+
+        stairsBlock(((StairBlock) ModBlocks.VOID_STAIRS.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.VOID_SLAB.get()), blockTexture(ModBlocks.VOID_PLANKS.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+
+        buttonBlock(((ButtonBlock) ModBlocks.VOID_BUTTON.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.VOID_PRESSURE_PLATE.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+
+        fenceBlock(((FenceBlock) ModBlocks.VOID_FENCE.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+        fenceGateBlock(((FenceGateBlock) ModBlocks.VOID_FENCE_GATE.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
+
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.VOID_DOOR.get()), modLoc("block/void_door_bottom"), modLoc("block/void_door_top"), "cutout");
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VOID_TRAPDOOR.get()), modLoc("block/void_trapdoor"), true, "cutout");
     }
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {
@@ -75,6 +101,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 //
 //        return models;
 //    }
+
+
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(name(signBlock), texture);
+        hangingSignBlock(signBlock, wallSignBlock, sign);
+    }
+
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
+    }
+
+    private String name(Block block) {
+        return key(block).getPath();
+    }
+
+    private ResourceLocation key(Block block) {
+        return ForgeRegistries.BLOCKS.getKey(block);
+    }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));

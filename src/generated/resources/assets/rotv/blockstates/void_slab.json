@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rotv:block/void_slab"
+    },
+    "type=double": {
+      "model": "rotv:block/void_planks"
+    },
+    "type=top": {
+      "model": "rotv:block/void_slab_top"
+    }
+  }
+}

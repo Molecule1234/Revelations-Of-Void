@@ -1,0 +1,58 @@
+{
+  "aurora": {
+    "sounds": [
+      {
+        "name": "rotv:aurora",
+        "stream": true
+      }
+    ]
+  },
+  "calm": {
+    "sounds": [
+      {
+        "name": "rotv:calm",
+        "stream": true
+      }
+    ]
+  },
+  "deorium": {
+    "sounds": [
+      {
+        "name": "rotv:deorium",
+        "stream": true
+      }
+    ]
+  },
+  "eleven": {
+    "sounds": [
+      {
+        "name": "rotv:eleven",
+        "stream": true
+      }
+    ]
+  },
+  "purple": {
+    "sounds": [
+      {
+        "name": "rotv:purple",
+        "stream": true
+      }
+    ]
+  },
+  "revelations": {
+    "sounds": [
+      {
+        "name": "rotv:revelations",
+        "stream": true
+      }
+    ]
+  },
+  "void": {
+    "sounds": [
+      {
+        "name": "rotv:void",
+        "stream": true
+      }
+    ]
+  }
+}

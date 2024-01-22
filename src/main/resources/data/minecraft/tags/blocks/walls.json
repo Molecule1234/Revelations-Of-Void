@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "rotv:void_wall"
+    "rotv:void_wall",
+    "rotv:imbued_stone_wall",
+    "rotv:imbued_stone_bricks_wall",
+    "rotv:polished_imbued_stone_wall"
   ]
 }

@@ -20,6 +20,7 @@ import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.entity.ModEntities;
 import net.scar.rotvmod.item.ModCreativeTabs;
 import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.sound.ModSounds;
 import net.scar.rotvmod.util.ModWoodTypes;
 import org.slf4j.Logger;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -34,6 +35,7 @@ public class RotvMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeTabs.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         ModItems.register(modEventBus);
 
@@ -87,6 +89,7 @@ public class RotvMod {
             event.accept(ModBlocks.VOID_SIGN);
             event.accept(ModBlocks.VOID_HANGING_SIGN);
             event.accept(ModBlocks.VOID_LEAVES);
+            event.accept(ModBlocks.VOID_LEAVES_MONOCHROME);
             event.accept(ModItems.VOID_BOAT);
             event.accept(ModItems.VOID_CHEST_BOAT);
             event.accept(ModBlocks.VOID_FLOWER);
@@ -100,6 +103,38 @@ public class RotvMod {
             event.accept(ModBlocks.VOID_DOOR);
             event.accept(ModBlocks.VOID_TRAPDOOR);
             event.accept(ModBlocks.VOID_WALL);
+            event.accept(ModItems.VOID_TREE_BARK);
+            event.accept(ModItems.OVERFLOWN_VOID_TREE_BARK);
+
+
+            event.accept(ModItems.AURORA_MUSIC_DISC);
+            event.accept(ModItems.CALM_MUSIC_DISC);
+            event.accept(ModItems.DEORIUM_MUSIC_DISC);
+            event.accept(ModItems.ELEVEN_MUSIC_DISC);
+            event.accept(ModItems.PURPLE_MUSIC_DISC);
+            event.accept(ModItems.REVELATIONS_MUSIC_DISC);
+            event.accept(ModItems.VOID_MUSIC_DISC);
+
+            event.accept(ModBlocks.IMBUED_STONE);
+            event.accept(ModBlocks.IMBUED_STONE_BRICKS);
+            event.accept(ModBlocks.POLISHED_IMBUED_STONE);
+            event.accept(ModBlocks.CARVED_IMBUED_STONE);
+            event.accept(ModBlocks.CRACKED_IMBUED_STONE_BRICKS);
+
+            event.accept(ModBlocks.IMBUED_STONE_BUTTON);
+            event.accept(ModBlocks.IMBUED_STONE_STAIRS);
+            event.accept(ModBlocks.IMBUED_STONE_WALL);
+            event.accept(ModBlocks.IMBUED_STONE_SLAB);
+
+            event.accept(ModBlocks.IMBUED_STONE_BRICKS_BUTTON);
+            event.accept(ModBlocks.IMBUED_STONE_BRICKS_STAIRS);
+            event.accept(ModBlocks.IMBUED_STONE_BRICKS_WALL);
+            event.accept(ModBlocks.IMBUED_STONE_BRICKS_SLAB);
+
+            event.accept(ModBlocks.POLISHED_IMBUED_STONE_BUTTON);
+            event.accept(ModBlocks.POLISHED_IMBUED_STONE_STAIRS);
+            event.accept(ModBlocks.POLISHED_IMBUED_STONE_WALL);
+            event.accept(ModBlocks.POLISHED_IMBUED_STONE_SLAB);
         }
     }
 

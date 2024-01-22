@@ -21,6 +21,17 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ModItems.ANCIENT_TOME);
+        simpleItem(ModItems.VOID_TREE_BARK);
+        simpleItem(ModItems.OVERFLOWN_VOID_TREE_BARK);
+
+        // Discs
+        simpleItem(ModItems.AURORA_MUSIC_DISC);
+        simpleItem(ModItems.CALM_MUSIC_DISC);
+        simpleItem(ModItems.DEORIUM_MUSIC_DISC);
+        simpleItem(ModItems.ELEVEN_MUSIC_DISC);
+        simpleItem(ModItems.PURPLE_MUSIC_DISC);
+        simpleItem(ModItems.REVELATIONS_MUSIC_DISC);
+        simpleItem(ModItems.VOID_MUSIC_DISC);
 
         // Ingots
         simpleItem(ModItems.INGOT_ALTURIUM);
@@ -61,6 +72,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.VOID_FENCE_GATE);
 
         trapdoorItem(ModBlocks.VOID_TRAPDOOR);
+
+        buttonItem(ModBlocks.IMBUED_STONE_BUTTON, ModBlocks.IMBUED_STONE);
+        evenSimplerBlockItem(ModBlocks.IMBUED_STONE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.IMBUED_STONE_SLAB);
+        wallItem(ModBlocks.IMBUED_STONE_WALL, ModBlocks.IMBUED_STONE);
+
+        buttonItem(ModBlocks.POLISHED_IMBUED_STONE_BUTTON, ModBlocks.POLISHED_IMBUED_STONE);
+        evenSimplerBlockItem(ModBlocks.POLISHED_IMBUED_STONE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.POLISHED_IMBUED_STONE_SLAB);
+        wallItem(ModBlocks.POLISHED_IMBUED_STONE_WALL, ModBlocks.POLISHED_IMBUED_STONE);
+
+        buttonItem(ModBlocks.IMBUED_STONE_BRICKS_BUTTON, ModBlocks.IMBUED_STONE_BRICKS);
+        evenSimplerBlockItem(ModBlocks.IMBUED_STONE_BRICKS_STAIRS);
+        evenSimplerBlockItem(ModBlocks.IMBUED_STONE_BRICKS_SLAB);
+        wallItem(ModBlocks.IMBUED_STONE_BRICKS_WALL, ModBlocks.IMBUED_STONE_BRICKS);
+
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

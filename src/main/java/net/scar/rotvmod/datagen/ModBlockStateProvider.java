@@ -31,9 +31,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.STRIPPED_VOID_LOG);
         blockItem(ModBlocks.STRIPPED_VOID_WOOD);
 
+        blockWithItem(ModBlocks.IMBUED_STONE);
+        blockWithItem(ModBlocks.IMBUED_STONE_BRICKS);
+        blockWithItem(ModBlocks.POLISHED_IMBUED_STONE);
+        blockWithItem(ModBlocks.CARVED_IMBUED_STONE);
+        blockWithItem(ModBlocks.CRACKED_IMBUED_STONE_BRICKS);
+
         blockWithItem(ModBlocks.VOID_PLANKS);
 
         leavesBlock(ModBlocks.VOID_LEAVES);
+        leavesBlock(ModBlocks.VOID_LEAVES_MONOCHROME);
 
         signBlock(((StandingSignBlock) ModBlocks.VOID_SIGN.get()), ((WallSignBlock) ModBlocks.VOID_WALL_SIGN.get()),
                 blockTexture(ModBlocks.VOID_PLANKS.get()));
@@ -62,6 +69,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         doorBlockWithRenderType(((DoorBlock) ModBlocks.VOID_DOOR.get()), modLoc("block/void_door_bottom"), modLoc("block/void_door_top"), "cutout");
         trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VOID_TRAPDOOR.get()), modLoc("block/void_trapdoor"), true, "cutout");
+
+
+        stairsBlock(((StairBlock) ModBlocks.IMBUED_STONE_STAIRS.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+        slabBlock(((SlabBlock) ModBlocks.IMBUED_STONE_SLAB.get()), blockTexture(ModBlocks.IMBUED_STONE.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+        wallBlock(((WallBlock) ModBlocks.IMBUED_STONE_WALL.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.IMBUED_STONE_BUTTON.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+
+        stairsBlock(((StairBlock) ModBlocks.POLISHED_IMBUED_STONE_STAIRS.get()), blockTexture(ModBlocks.POLISHED_IMBUED_STONE.get()));
+        slabBlock(((SlabBlock) ModBlocks.POLISHED_IMBUED_STONE_SLAB.get()), blockTexture(ModBlocks.POLISHED_IMBUED_STONE.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+        wallBlock(((WallBlock) ModBlocks.POLISHED_IMBUED_STONE_WALL.get()), blockTexture(ModBlocks.POLISHED_IMBUED_STONE.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.POLISHED_IMBUED_STONE_BUTTON.get()), blockTexture(ModBlocks.POLISHED_IMBUED_STONE.get()));
+
+        stairsBlock(((StairBlock) ModBlocks.IMBUED_STONE_BRICKS_STAIRS.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.IMBUED_STONE_BRICKS_SLAB.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
+        wallBlock(((WallBlock) ModBlocks.IMBUED_STONE_BRICKS_WALL.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.IMBUED_STONE_BRICKS_BUTTON.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
     }
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {

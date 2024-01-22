@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rotv:block/cracked_imbued_stone_bricks"
+  }
+}

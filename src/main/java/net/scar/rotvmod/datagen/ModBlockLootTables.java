@@ -23,8 +23,16 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.dropSelf(ModBlocks.STRIPPED_VOID_WOOD.get());
         this.dropSelf(ModBlocks.VOID_PLANKS.get());
 
+        this.dropSelf(ModBlocks.IMBUED_STONE.get());
+        this.dropSelf(ModBlocks.IMBUED_STONE_BRICKS.get());
+        this.dropSelf(ModBlocks.POLISHED_IMBUED_STONE.get());
+        this.dropSelf(ModBlocks.CARVED_IMBUED_STONE.get());
+        this.dropSelf(ModBlocks.CRACKED_IMBUED_STONE_BRICKS.get());
+
         this.add(ModBlocks.VOID_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.VOID_LEAVES_MONOCHROME.get(), block ->
+                createLeavesDrops(block, ModBlocks.VOID_LEAVES_MONOCHROME.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.add(ModBlocks.VOID_SIGN.get(), block ->
                 createSingleItemTable(ModItems.VOID_SIGN.get()));
@@ -53,6 +61,24 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
                 block -> createSlabItemTable(ModBlocks.VOID_SLAB.get()));
         this.add(ModBlocks.VOID_DOOR.get(),
                 block -> createDoorTable(ModBlocks.VOID_DOOR.get()));
+
+        this.dropSelf(ModBlocks.IMBUED_STONE_BRICKS_BUTTON.get());
+        this.dropSelf(ModBlocks.IMBUED_STONE_BRICKS_STAIRS.get());
+        this.add(ModBlocks.IMBUED_STONE_BRICKS_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.IMBUED_STONE_BRICKS_SLAB.get()));
+        this.dropSelf(ModBlocks.IMBUED_STONE_BRICKS_WALL.get());
+
+        this.dropSelf(ModBlocks.POLISHED_IMBUED_STONE_BUTTON.get());
+        this.dropSelf(ModBlocks.POLISHED_IMBUED_STONE_STAIRS.get());
+        this.add(ModBlocks.POLISHED_IMBUED_STONE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.POLISHED_IMBUED_STONE_SLAB.get()));
+        this.dropSelf(ModBlocks.POLISHED_IMBUED_STONE_WALL.get());
+
+        this.dropSelf(ModBlocks.IMBUED_STONE_BUTTON.get());
+        this.dropSelf(ModBlocks.IMBUED_STONE_STAIRS.get());
+        this.add(ModBlocks.IMBUED_STONE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.IMBUED_STONE_SLAB.get()));
+        this.dropSelf(ModBlocks.IMBUED_STONE_WALL.get());
     }
 
     @Override

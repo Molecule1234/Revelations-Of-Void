@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "rotv:block/polished_imbued_stone",
+    "side": "rotv:block/polished_imbued_stone",
+    "top": "rotv:block/polished_imbued_stone"
+  }
+}

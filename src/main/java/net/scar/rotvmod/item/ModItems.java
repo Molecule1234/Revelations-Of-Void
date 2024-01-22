@@ -8,6 +8,7 @@ import net.scar.rotvmod.RotvMod;
 import net.minecraft.world.item.*;
 import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.entity.ModBoatEntity;
+import net.scar.rotvmod.sound.ModSounds;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -18,6 +19,10 @@ public class ModItems {
     public static final RegistryObject<Item> CLEAR_RUNE = ITEMS.register("clear_rune",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IMBUED_BRICK = ITEMS.register("imbued_brick",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VOID_TREE_BARK = ITEMS.register("void_tree_bark",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> OVERFLOWN_VOID_TREE_BARK = ITEMS.register("overflown_void_tree_bark",
             () -> new Item(new Item.Properties()));
 
     // Ingots
@@ -53,6 +58,22 @@ public class ModItems {
             () -> new ModBoatItem(false, ModBoatEntity.Type.VOID, new Item.Properties()));
     public static final RegistryObject<Item> VOID_CHEST_BOAT = ITEMS.register("void_chest_boat",
             () -> new ModBoatItem(true, ModBoatEntity.Type.VOID, new Item.Properties()));
+
+    public static final RegistryObject<Item> AURORA_MUSIC_DISC = ITEMS.register("aurora_music_disc",
+            () -> new RecordItem(6, ModSounds.AURORA, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> CALM_MUSIC_DISC = ITEMS.register("calm_music_disc",
+            () -> new RecordItem(6, ModSounds.CALM, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> DEORIUM_MUSIC_DISC = ITEMS.register("deorium_music_disc",
+            () -> new RecordItem(6, ModSounds.DEORIUM, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> ELEVEN_MUSIC_DISC = ITEMS.register("eleven_music_disc",
+            () -> new RecordItem(6, ModSounds.ELEVEN, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> PURPLE_MUSIC_DISC = ITEMS.register("purple_music_disc",
+            () -> new RecordItem(6, ModSounds.PURPLE, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> REVELATIONS_MUSIC_DISC = ITEMS.register("revelations_music_disc",
+            () -> new RecordItem(6, ModSounds.REVELATIONS, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> VOID_MUSIC_DISC = ITEMS.register("void_music_disc",
+            () -> new RecordItem(6, ModSounds.VOID, new Item.Properties().stacksTo(1), 2440));
+
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rotv:block/imbued_stone_bricks_slab"
+    },
+    "type=double": {
+      "model": "rotv:block/imbued_stone_bricks"
+    },
+    "type=top": {
+      "model": "rotv:block/imbued_stone_bricks_slab_top"
+    }
+  }
+}

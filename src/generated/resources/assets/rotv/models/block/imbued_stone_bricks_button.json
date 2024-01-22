@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "rotv:block/imbued_stone_bricks"
+  }
+}

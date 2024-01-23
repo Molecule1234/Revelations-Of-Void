@@ -85,6 +85,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock(((SlabBlock) ModBlocks.IMBUED_STONE_BRICKS_SLAB.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()), blockTexture(ModBlocks.IMBUED_STONE.get()));
         wallBlock(((WallBlock) ModBlocks.IMBUED_STONE_BRICKS_WALL.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
         buttonBlock(((ButtonBlock) ModBlocks.IMBUED_STONE_BRICKS_BUTTON.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
+
+        simpleBlockWithItem(ModBlocks.ALCHEMY_FURNACE.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/alchemy_furnace")));
+
     }
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {

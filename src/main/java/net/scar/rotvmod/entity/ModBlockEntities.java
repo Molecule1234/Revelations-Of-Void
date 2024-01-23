@@ -9,11 +9,17 @@ import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.entity.ModHangingSignBlockEntity;
 import net.scar.rotvmod.block.entity.ModSignBlockEntity;
 import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.block.entity.alchemy.AlchemyFurnaceBlockEntity;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, RotvMod.MOD_ID);
 
+
+    public static final RegistryObject<BlockEntityType<AlchemyFurnaceBlockEntity>> ALCHEMY_FURNACE =
+            BLOCK_ENTITIES.register("alchemy_furnace", () ->
+                    BlockEntityType.Builder.of(AlchemyFurnaceBlockEntity::new,
+                            ModBlocks.ALCHEMY_FURNACE.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN =
             BLOCK_ENTITIES.register("mod_sign", () ->

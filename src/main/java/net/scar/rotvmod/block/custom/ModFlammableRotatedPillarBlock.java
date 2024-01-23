@@ -1,4 +1,4 @@
-package net.scar.rotvmod.block;
+package net.scar.rotvmod.block.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,6 +8,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
+import net.scar.rotvmod.block.ModBlocks;
 import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.Nullable;
 

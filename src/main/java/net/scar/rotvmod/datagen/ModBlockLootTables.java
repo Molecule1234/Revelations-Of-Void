@@ -79,6 +79,8 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.add(ModBlocks.IMBUED_STONE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.IMBUED_STONE_SLAB.get()));
         this.dropSelf(ModBlocks.IMBUED_STONE_WALL.get());
+
+        this.dropSelf(ModBlocks.ALCHEMY_FURNACE.get());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.scar.rotvmod.block;
+package net.scar.rotvmod.block.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.StandingSignBlock;

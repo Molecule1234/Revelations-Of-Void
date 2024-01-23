@@ -1,7 +1,6 @@
 package net.scar.rotvmod.block;
 
 import net.minecraft.core.Direction;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -14,6 +13,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
+import net.scar.rotvmod.block.custom.*;
+import net.scar.rotvmod.block.custom.alchemy.AlchemyFurnaceBlock;
 import net.scar.rotvmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.scar.rotvmod.util.ModWoodTypes;
@@ -179,6 +180,11 @@ public class ModBlocks {
                     BlockSetType.STONE, 10, true));
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS_WALL = registerBlock("imbued_stone_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE)));
+
+
+
+    public static final RegistryObject<Block> ALCHEMY_FURNACE = registerBlock("alchemy_furnace",
+            () -> new AlchemyFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

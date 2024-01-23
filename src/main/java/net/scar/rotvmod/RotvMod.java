@@ -1,6 +1,7 @@
 package net.scar.rotvmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -20,6 +21,8 @@ import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.entity.ModEntities;
 import net.scar.rotvmod.item.ModCreativeTabs;
 import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.screen.AlchemyFurnaceScreen;
+import net.scar.rotvmod.screen.ModMenuTypes;
 import net.scar.rotvmod.sound.ModSounds;
 import net.scar.rotvmod.util.ModWoodTypes;
 import org.slf4j.Logger;
@@ -41,6 +44,7 @@ public class RotvMod {
 
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         ModEntities.register(modEventBus);
 
@@ -135,6 +139,8 @@ public class RotvMod {
             event.accept(ModBlocks.POLISHED_IMBUED_STONE_STAIRS);
             event.accept(ModBlocks.POLISHED_IMBUED_STONE_WALL);
             event.accept(ModBlocks.POLISHED_IMBUED_STONE_SLAB);
+
+            event.accept(ModBlocks.ALCHEMY_FURNACE);
         }
     }
 
@@ -154,6 +160,7 @@ public class RotvMod {
             EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
             EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
+            MenuScreens.register(ModMenuTypes.ALCHEMY_FURNACE_MENU.get(), AlchemyFurnaceScreen::new);
         }
     }
 }

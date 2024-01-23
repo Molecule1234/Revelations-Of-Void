@@ -1,0 +1,4 @@
+// 1.20.1	2024-01-23T14:31:12.9614827	Registries
+a597b64167837babb88f967346651137a7adf765 data/rotv/forge/biome_modifier/add_imbued_stone.json
+20abef5a21cdf6f1556bdc76ff30eda7e5a3dc48 data/rotv/worldgen/configured_feature/imbued_stone.json
+ef2f78931b73ff5593ad5f8216b4e7446ef0dc4b data/rotv/worldgen/placed_feature/imbued_stone_placed.json

@@ -1,4 +1,7 @@
-// 1.20.1	2024-01-23T14:43:08.4097702	Registries
+// 1.20.1	2024-01-24T10:16:27.7180975	Registries
 a597b64167837babb88f967346651137a7adf765 data/rotv/forge/biome_modifier/add_imbued_stone.json
+eb74ba9eab1c5fa834dfdf65d68941f120a0f2c8 data/rotv/forge/biome_modifier/add_slime_flower.json
 20abef5a21cdf6f1556bdc76ff30eda7e5a3dc48 data/rotv/worldgen/configured_feature/imbued_stone.json
+c0ad139c9930afa010316171a8b7366b436b936d data/rotv/worldgen/configured_feature/slime_flower.json
 6c86f3196447d10517efb8c70664d82bdc36fc8e data/rotv/worldgen/placed_feature/imbued_stone_placed.json
+88ea51e9e7dedd6c4a625d65e04f4d4989b999e5 data/rotv/worldgen/placed_feature/slime_flower_placed.json

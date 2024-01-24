@@ -57,9 +57,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.VOID_BOAT);
         simpleItem(ModItems.VOID_CHEST_BOAT);
 
-        simpleBlockItemBlockTexture(ModBlocks.VOID_FLOWER);
-        simpleBlockItemBlockTexture(ModBlocks.SLIME_FLOWER);
-
         simpleBlockItem(ModBlocks.VOID_DOOR);
 
         fenceItem(ModBlocks.VOID_FENCE, ModBlocks.VOID_PLANKS);
@@ -138,4 +135,5 @@ public class ModItemModelProvider extends ItemModelProvider {
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(RotvMod.MOD_ID,"item/" + item.getId().getPath()));
     }
+
 }

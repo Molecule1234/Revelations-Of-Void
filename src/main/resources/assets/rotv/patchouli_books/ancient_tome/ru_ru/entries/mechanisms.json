@@ -1,0 +1,11 @@
+{
+  "name": "Механизмы пустоты",
+  "icon": "rotv:void_extractor",
+  "category": "ancient_tome:mechanisms",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

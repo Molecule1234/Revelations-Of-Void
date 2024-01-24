@@ -50,10 +50,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         hangingSignBlock(ModBlocks.VOID_HANGING_SIGN.get(), ModBlocks.VOID_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.VOID_PLANKS.get()));
 
-        simpleBlockWithItem(ModBlocks.VOID_FLOWER.get(), models().cross(blockTexture(ModBlocks.VOID_FLOWER.get()).getPath(),
-                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
-        simpleBlockWithItem(ModBlocks.POTTED_VOID_FLOWER.get(), models().singleTexture("potted_void_flower", new ResourceLocation("flower_pot_cross"), "plant",
-                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+//        simpleBlock(ModBlocks.VOID_FLOWER.get(), models().cross(blockTexture(ModBlocks.VOID_FLOWER.get()).getPath(),
+//                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+//        simpleBlock(ModBlocks.POTTED_VOID_FLOWER.get(), models().singleTexture("potted_void_flower", new ResourceLocation("flower_pot_cross"), "plant",
+//                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
 
         simpleBlockWithItem(ModBlocks.SLIME_FLOWER.get(), models().cross(blockTexture(ModBlocks.SLIME_FLOWER.get()).getPath(),
                 blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));

@@ -142,6 +142,7 @@ public class RotvMod {
             event.accept(ModBlocks.POLISHED_IMBUED_STONE_SLAB);
 
             event.accept(ModBlocks.ALCHEMY_FURNACE);
+            event.accept(ModBlocks.VOID_EXTRACTOR);
         }
     }
 

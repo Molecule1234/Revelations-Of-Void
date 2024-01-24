@@ -15,6 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.custom.*;
 import net.scar.rotvmod.block.custom.alchemy.AlchemyFurnaceBlock;
+import net.scar.rotvmod.block.custom.extractor.VoidExtractorBlock;
 import net.scar.rotvmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.scar.rotvmod.util.ModWoodTypes;
@@ -139,7 +140,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> VOID_FENCE = registerBlock("void_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> VOID_FENCE_GATE = registerBlock("void_fence_gate",
-            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE).sound(SoundType.WOOD), SoundEvents.CHAIN_PLACE, SoundEvents.ANVIL_BREAK));
+            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE).sound(SoundType.WOOD), SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_OPEN));
 
     public static final RegistryObject<Block> VOID_DOOR = registerBlock("void_door",
             () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).sound(SoundType.WOOD).noOcclusion(), BlockSetType.ACACIA));
@@ -187,6 +188,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ALCHEMY_FURNACE = registerBlock("alchemy_furnace",
             () -> new AlchemyFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> VOID_EXTRACTOR = registerBlock("void_extractor",
+            () -> new VoidExtractorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -20,6 +20,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("alchemy_furnace", () ->
                     BlockEntityType.Builder.of(AlchemyFurnaceBlockEntity::new,
                             ModBlocks.ALCHEMY_FURNACE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<AlchemyFurnaceBlockEntity>> VOID_EXTRACTOR =
+            BLOCK_ENTITIES.register("void_extractor", () ->
+                    BlockEntityType.Builder.of(AlchemyFurnaceBlockEntity::new,
+                            ModBlocks.VOID_EXTRACTOR.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN =
             BLOCK_ENTITIES.register("mod_sign", () ->

@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-24T08:34:57.2809451	Loot Tables
+// 1.20.1	2024-01-24T09:42:22.0949074	Loot Tables
 caff5373b8011b86b2d31232431e89801ee0fb09 data/rotv/loot_tables/blocks/alchemy_furnace.json
 cc1a90557806c54bbe64c911acec18788790c014 data/rotv/loot_tables/blocks/carved_imbued_stone.json
 66f0c4cf20fea6dc12c121b46a294b4272bc4840 data/rotv/loot_tables/blocks/cracked_imbued_stone_bricks.json
@@ -25,6 +25,7 @@ c09d71ba5e4d32f1f29542fcf9f7e957610189cf data/rotv/loot_tables/blocks/polished_i
 f69af8242f49fbc49d8095e7960dc8be31c379e0 data/rotv/loot_tables/blocks/stripped_void_wood.json
 c2cd1575a340a1cd646299bbec97f2b1e228bc01 data/rotv/loot_tables/blocks/void_button.json
 71a64c5a63666f5954fa2647b0be365b6e936d57 data/rotv/loot_tables/blocks/void_door.json
+839f43d0397ffa95be792567e103665495065a66 data/rotv/loot_tables/blocks/void_extractor.json
 b771baac3695135291b03d2cc8b6140c5932d13d data/rotv/loot_tables/blocks/void_fence.json
 e9564a813acfd178f4cbcf4b36b1076d84d7bdfa data/rotv/loot_tables/blocks/void_fence_gate.json
 a96a758dc548124b383af67d46f96bdad0624dfd data/rotv/loot_tables/blocks/void_flower.json

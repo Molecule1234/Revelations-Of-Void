@@ -82,6 +82,7 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.dropSelf(ModBlocks.IMBUED_STONE_WALL.get());
 
         this.dropSelf(ModBlocks.ALCHEMY_FURNACE.get());
+        this.dropSelf(ModBlocks.VOID_EXTRACTOR.get());
     }
 
     @Override

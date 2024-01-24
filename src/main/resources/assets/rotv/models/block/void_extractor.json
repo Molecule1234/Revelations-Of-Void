@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "rotv:block/void_extractor_front",
+    "side": "rotv:block/void_extractor_side",
+    "top": "rotv:block/void_extractor_top",
+    "bottom": "rotv:block/void_extractor_bottom"
+  }
+}

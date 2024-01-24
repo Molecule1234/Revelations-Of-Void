@@ -30,6 +30,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.VOID_WOOD);
         blockItem(ModBlocks.STRIPPED_VOID_LOG);
         blockItem(ModBlocks.STRIPPED_VOID_WOOD);
+        blockItem(ModBlocks.VOID_EXTRACTOR);
 
         blockWithItem(ModBlocks.IMBUED_STONE);
         blockWithItem(ModBlocks.IMBUED_STONE_BRICKS);

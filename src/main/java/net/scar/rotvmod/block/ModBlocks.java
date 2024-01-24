@@ -37,6 +37,8 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> CRACKED_IMBUED_STONE_BRICKS = registerBlock("cracked_imbued_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE_BRICKS)));
+    public static final RegistryObject<Block> IMBUED_STONE_TILE = registerBlock("imbued_stone_tile",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
 
     public static final RegistryObject<Block> VOID_LOG = registerBlock("void_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).strength(3f)));

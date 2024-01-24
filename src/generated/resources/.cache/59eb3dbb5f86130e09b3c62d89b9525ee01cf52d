@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-23T09:20:20.0349802	Loot Tables
+// 1.20.1	2024-01-24T08:34:57.2809451	Loot Tables
 caff5373b8011b86b2d31232431e89801ee0fb09 data/rotv/loot_tables/blocks/alchemy_furnace.json
 cc1a90557806c54bbe64c911acec18788790c014 data/rotv/loot_tables/blocks/carved_imbued_stone.json
 66f0c4cf20fea6dc12c121b46a294b4272bc4840 data/rotv/loot_tables/blocks/cracked_imbued_stone_bricks.json
@@ -11,6 +11,7 @@ b04e16164116b07b3945217bcc5fcc5088929876 data/rotv/loot_tables/blocks/imbued_sto
 a619860925a2c447ea7ad010cb7b8a360a15cbea data/rotv/loot_tables/blocks/imbued_stone_button.json
 2845881826821acda3dbadf325d766ca6a93e054 data/rotv/loot_tables/blocks/imbued_stone_slab.json
 656cd5e2bbfb6d8642585958c1b1fa651358c164 data/rotv/loot_tables/blocks/imbued_stone_stairs.json
+e357c8bbb5516e0984e0fc92f9111751e0239a1c data/rotv/loot_tables/blocks/imbued_stone_tile.json
 7ed5da174f9da4b67af1e4d70215383c4e4bda1b data/rotv/loot_tables/blocks/imbued_stone_wall.json
 d52973a05aaba5de5453b12a70e09286ad13fa5d data/rotv/loot_tables/blocks/polished_imbued_stone.json
 c09d71ba5e4d32f1f29542fcf9f7e957610189cf data/rotv/loot_tables/blocks/polished_imbued_stone_button.json

@@ -36,6 +36,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.POLISHED_IMBUED_STONE);
         blockWithItem(ModBlocks.CARVED_IMBUED_STONE);
         blockWithItem(ModBlocks.CRACKED_IMBUED_STONE_BRICKS);
+        blockWithItem(ModBlocks.IMBUED_STONE_TILE);
 
         blockWithItem(ModBlocks.VOID_PLANKS);
 

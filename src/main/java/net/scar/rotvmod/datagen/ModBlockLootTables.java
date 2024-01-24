@@ -28,6 +28,7 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.dropSelf(ModBlocks.POLISHED_IMBUED_STONE.get());
         this.dropSelf(ModBlocks.CARVED_IMBUED_STONE.get());
         this.dropSelf(ModBlocks.CRACKED_IMBUED_STONE_BRICKS.get());
+        this.dropSelf(ModBlocks.IMBUED_STONE_TILE.get());
 
         this.add(ModBlocks.VOID_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));

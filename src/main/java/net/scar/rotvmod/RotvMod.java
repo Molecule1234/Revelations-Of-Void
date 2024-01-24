@@ -124,6 +124,7 @@ public class RotvMod {
             event.accept(ModBlocks.POLISHED_IMBUED_STONE);
             event.accept(ModBlocks.CARVED_IMBUED_STONE);
             event.accept(ModBlocks.CRACKED_IMBUED_STONE_BRICKS);
+            event.accept(ModBlocks.IMBUED_STONE_TILE);
 
             event.accept(ModBlocks.IMBUED_STONE_BUTTON);
             event.accept(ModBlocks.IMBUED_STONE_STAIRS);

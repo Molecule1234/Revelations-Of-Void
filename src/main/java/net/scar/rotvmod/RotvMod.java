@@ -94,6 +94,7 @@ public class RotvMod {
             event.accept(ModBlocks.VOID_HANGING_SIGN);
             event.accept(ModBlocks.VOID_LEAVES);
             event.accept(ModBlocks.VOID_LEAVES_MONOCHROME);
+            event.accept(ModBlocks.FLOWERING_VOID_LEAVES);
             event.accept(ModItems.VOID_BOAT);
             event.accept(ModItems.VOID_CHEST_BOAT);
             event.accept(ModBlocks.VOID_FLOWER);

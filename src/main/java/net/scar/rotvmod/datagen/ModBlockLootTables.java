@@ -34,6 +34,8 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
                 createLeavesDrops(block, ModBlocks.VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.VOID_LEAVES_MONOCHROME.get(), block ->
                 createLeavesDrops(block, ModBlocks.VOID_LEAVES_MONOCHROME.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ModBlocks.FLOWERING_VOID_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.FLOWERING_VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.add(ModBlocks.VOID_SIGN.get(), block ->
                 createSingleItemTable(ModItems.VOID_SIGN.get()));

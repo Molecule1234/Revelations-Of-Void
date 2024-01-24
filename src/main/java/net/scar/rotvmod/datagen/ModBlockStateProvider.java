@@ -43,6 +43,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         leavesBlock(ModBlocks.VOID_LEAVES);
         leavesBlock(ModBlocks.VOID_LEAVES_MONOCHROME);
+        leavesBlock(ModBlocks.FLOWERING_VOID_LEAVES);
 
         signBlock(((StandingSignBlock) ModBlocks.VOID_SIGN.get()), ((WallSignBlock) ModBlocks.VOID_WALL_SIGN.get()),
                 blockTexture(ModBlocks.VOID_PLANKS.get()));

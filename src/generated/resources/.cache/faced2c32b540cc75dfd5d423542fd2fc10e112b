@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-24T15:37:45.3376249	Item Models: rotv
+// 1.20.1	2024-01-25T13:00:03.8523675	Item Models: rotv
 41acc0a3d423bc5eb6722a0fcefa6aabec460b28 assets/rotv/models/item/ancient_tome.json
 90fee88ded1fa0e59ce9f767ba1a8c34d9f218c3 assets/rotv/models/item/aurora_music_disc.json
 f318bda0768cde2e78589547a8039820a9fc0688 assets/rotv/models/item/calm_music_disc.json
@@ -39,6 +39,7 @@ f2f4eaf3640e46cce93efcaa2e7d5ba74e79c636 assets/rotv/models/item/void_door.json
 19c2ddd4906435ac5f57e86751ce4a1749e02228 assets/rotv/models/item/void_hanging_sign.json
 edec0d52688f1c75a998b688b133b292726784d8 assets/rotv/models/item/void_music_disc.json
 957000476af198c7ad21eca3e18e8e9b8b7bdb52 assets/rotv/models/item/void_pressure_plate.json
+3f4f981c33c463c3ea7b36c4cfd8839c1e5796f6 assets/rotv/models/item/void_sapling.json
 16369316af8688a9db4ae2d664a6750ee2ad0416 assets/rotv/models/item/void_sign.json
 13005db6ae1d8828a58b79d148d8e4d2f83f51bd assets/rotv/models/item/void_slab.json
 a41511043f81e4f6e71a095d0297dd86db19bd34 assets/rotv/models/item/void_stairs.json

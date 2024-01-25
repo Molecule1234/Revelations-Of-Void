@@ -31,11 +31,11 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
         this.dropSelf(ModBlocks.IMBUED_STONE_TILE.get());
 
         this.add(ModBlocks.VOID_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                createLeavesDrops(block, ModBlocks.VOID_LEAVES.get(), 0.0f));
         this.add(ModBlocks.VOID_LEAVES_MONOCHROME.get(), block ->
-                createLeavesDrops(block, ModBlocks.VOID_LEAVES_MONOCHROME.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                createLeavesDrops(block, ModBlocks.VOID_LEAVES_MONOCHROME.get(), 0.0f));
         this.add(ModBlocks.FLOWERING_VOID_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.FLOWERING_VOID_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                createLeavesDrops(block, ModBlocks.FLOWERING_VOID_LEAVES.get(), 0.0f));
 
         this.add(ModBlocks.VOID_SIGN.get(), block ->
                 createSingleItemTable(ModItems.VOID_SIGN.get()));
@@ -85,6 +85,8 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
 
         this.dropSelf(ModBlocks.ALCHEMY_FURNACE.get());
         this.dropSelf(ModBlocks.VOID_EXTRACTOR.get());
+
+        this.dropSelf(ModBlocks.VOID_SAPLING.get());
     }
 
     @Override

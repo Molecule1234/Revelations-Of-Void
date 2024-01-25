@@ -49,15 +49,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         hangingSignBlock(ModBlocks.VOID_HANGING_SIGN.get(), ModBlocks.VOID_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.VOID_PLANKS.get()));
 
-//        simpleBlock(ModBlocks.VOID_FLOWER.get(), models().cross(blockTexture(ModBlocks.VOID_FLOWER.get()).getPath(),
-//                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
-//        simpleBlock(ModBlocks.POTTED_VOID_FLOWER.get(), models().singleTexture("potted_void_flower", new ResourceLocation("flower_pot_cross"), "plant",
-//                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.VOID_FLOWER.get(), models().cross(blockTexture(ModBlocks.VOID_FLOWER.get()).getPath(),
+                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_VOID_FLOWER.get(), models().singleTexture("potted_void_flower", new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.VOID_FLOWER.get())).renderType("cutout"));
 
-        simpleBlockWithItem(ModBlocks.SLIME_FLOWER.get(), models().cross(blockTexture(ModBlocks.SLIME_FLOWER.get()).getPath(),
-                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
-        simpleBlockWithItem(ModBlocks.POTTED_SLIME_FLOWER.get(), models().singleTexture("potted_slime_flower", new ResourceLocation("flower_pot_cross"), "plant",
-                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
+//        simpleBlockWithItem(ModBlocks.SLIME_FLOWER.get(), models().cross(blockTexture(ModBlocks.SLIME_FLOWER.get()).getPath(),
+//                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
+//        simpleBlockWithItem(ModBlocks.POTTED_SLIME_FLOWER.get(), models().singleTexture("potted_slime_flower", new ResourceLocation("flower_pot_cross"), "plant",
+//                blockTexture(ModBlocks.SLIME_FLOWER.get())).renderType("cutout"));
 
         stairsBlock(((StairBlock) ModBlocks.VOID_STAIRS.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
         slabBlock(((SlabBlock) ModBlocks.VOID_SLAB.get()), blockTexture(ModBlocks.VOID_PLANKS.get()), blockTexture(ModBlocks.VOID_PLANKS.get()));
@@ -91,6 +91,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.ALCHEMY_FURNACE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/alchemy_furnace")));
 
+        saplingBlock(ModBlocks.VOID_SAPLING);
+
     }
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {
@@ -102,6 +104,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void blockItem(RegistryObject<Block> blockRegistryObject) {
         simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile(RotvMod.MOD_ID +
                 ":block/" + ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath()));
+    }
+
+    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
 //    public void makeStrawberryCrop(CropBlock block, String modelName, String textureName) {

@@ -1,8 +1,8 @@
-// 1.20.1	2024-01-24T10:29:35.4896595	Loot Tables
+// 1.20.1	2024-01-25T13:00:03.8533663	Loot Tables
 caff5373b8011b86b2d31232431e89801ee0fb09 data/rotv/loot_tables/blocks/alchemy_furnace.json
 cc1a90557806c54bbe64c911acec18788790c014 data/rotv/loot_tables/blocks/carved_imbued_stone.json
 66f0c4cf20fea6dc12c121b46a294b4272bc4840 data/rotv/loot_tables/blocks/cracked_imbued_stone_bricks.json
-9f1b791bd36a4fee0a0fee0a3ecb19b105964042 data/rotv/loot_tables/blocks/flowering_void_leaves.json
+9974edcfd6423d5750cb2cc47907eaa2c650ebf5 data/rotv/loot_tables/blocks/flowering_void_leaves.json
 9e16726643231a3068628de3931b73ffda1b18cf data/rotv/loot_tables/blocks/imbued_stone.json
 b94aa4c730cc4aeda1ab78bb6393a9bcc1c43299 data/rotv/loot_tables/blocks/imbued_stone_bricks.json
 d0274fa67a2e6d56cbbb6f78e5d304a46b681ec1 data/rotv/loot_tables/blocks/imbued_stone_bricks_button.json
@@ -31,11 +31,12 @@ b771baac3695135291b03d2cc8b6140c5932d13d data/rotv/loot_tables/blocks/void_fence
 e9564a813acfd178f4cbcf4b36b1076d84d7bdfa data/rotv/loot_tables/blocks/void_fence_gate.json
 a96a758dc548124b383af67d46f96bdad0624dfd data/rotv/loot_tables/blocks/void_flower.json
 b5d6e697dd2cf05302b02a0f0022fcea51d07f3c data/rotv/loot_tables/blocks/void_hanging_sign.json
-b211ee4e55978ae0de49caae5a41d3ab1cf35ada data/rotv/loot_tables/blocks/void_leaves.json
-b91a8d2810671612e4b6fcd85b94bb0964ea04a2 data/rotv/loot_tables/blocks/void_leaves_monochrome.json
+8fd9023107497f67c9673f1a52fa680f598de4b4 data/rotv/loot_tables/blocks/void_leaves.json
+45f4987497f411132fc5798d6800a441eadf31e2 data/rotv/loot_tables/blocks/void_leaves_monochrome.json
 5896999745171bd4094bca2468dc516da4d9aeb2 data/rotv/loot_tables/blocks/void_log.json
 0b4d4bf3ee1484e05d70fb0b72a4079473d43a65 data/rotv/loot_tables/blocks/void_planks.json
 27fb1d59b098c61815190a7427e619cb42b5089c data/rotv/loot_tables/blocks/void_pressure_plate.json
+342c6d40e48574fc587be42fccc7cbdb3f06dab9 data/rotv/loot_tables/blocks/void_sapling.json
 de9df4b1fd5942ca97c940896a85a2c07ab35595 data/rotv/loot_tables/blocks/void_sign.json
 73613ccd930f1d9cad712d15de71cdb21e39e1ce data/rotv/loot_tables/blocks/void_slab.json
 910d4de8546dfa06c3b8bde8875a96823f7c9f87 data/rotv/loot_tables/blocks/void_stairs.json

@@ -144,6 +144,8 @@ public class RotvMod {
 
             event.accept(ModBlocks.ALCHEMY_FURNACE);
             event.accept(ModBlocks.VOID_EXTRACTOR);
+
+            event.accept(ModBlocks.VOID_SAPLING);
         }
     }
 

@@ -16,6 +16,7 @@ import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.custom.*;
 import net.scar.rotvmod.block.custom.alchemy.AlchemyFurnaceBlock;
 import net.scar.rotvmod.block.custom.extractor.VoidExtractorBlock;
+import net.scar.rotvmod.datagen.tree.VoidTreeGrower;
 import net.scar.rotvmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.scar.rotvmod.util.ModWoodTypes;
@@ -207,6 +208,10 @@ public class ModBlocks {
             () -> new AlchemyFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
     public static final RegistryObject<Block> VOID_EXTRACTOR = registerBlock("void_extractor",
             () -> new VoidExtractorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+
+
+    public static final RegistryObject<Block> VOID_SAPLING = registerBlock("void_sapling",
+            () -> new SaplingBlock(new VoidTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -10,7 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.ModBlocks;
-
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, RotvMod.MOD_ID, exFileHelper);

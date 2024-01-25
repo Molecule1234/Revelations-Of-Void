@@ -15,7 +15,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, RotvMod.MOD_ID);
 
     public static final RegistryObject<Item> ANCIENT_TOME = ITEMS.register("ancient_tome",
-            () -> new Item(new Item.Properties()));
+            () -> new AncientTome(new Item.Properties()));
     public static final RegistryObject<Item> CLEAR_RUNE = ITEMS.register("clear_rune",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IMBUED_BRICK = ITEMS.register("imbued_brick",

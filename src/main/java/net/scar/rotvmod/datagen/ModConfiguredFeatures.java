@@ -20,6 +20,8 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.datagen.tree.VoidTreeFoliagePlacer;
+import net.scar.rotvmod.datagen.tree.VoidTreeTrunkPlacer;
 
 import java.util.List;
 
@@ -46,12 +48,12 @@ public class ModConfiguredFeatures {
 
         register(context, VOID_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.VOID_LOG.get()),
-                new StraightTrunkPlacer(5, 4, 3),
+                new VoidTreeTrunkPlacer(5, 2, 2),
 
                 BlockStateProvider.simple(ModBlocks.VOID_LEAVES_MONOCHROME.get()),
-                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new VoidTreeFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1), 1),
 
-                new TwoLayersFeatureSize(1, 0, 2)).build());
+                new TwoLayersFeatureSize(1, 0, 0)).build());
     }
 
 

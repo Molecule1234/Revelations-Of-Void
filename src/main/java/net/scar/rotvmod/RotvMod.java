@@ -17,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.client.renders.ModBoatRenderer;
+import net.scar.rotvmod.datagen.tree.ModFoliagePlacers;
+import net.scar.rotvmod.datagen.tree.ModTrunkPlacerTypes;
 import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.entity.ModEntities;
 import net.scar.rotvmod.item.ModCreativeTabs;
@@ -47,6 +49,9 @@ public class RotvMod {
         ModMenuTypes.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModTrunkPlacerTypes.register(modEventBus);
+        ModFoliagePlacers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

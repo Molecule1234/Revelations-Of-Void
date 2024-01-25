@@ -1,0 +1,21 @@
+{
+    "structures": [
+    {
+      "structure": "rotv:void_tree",
+      "weight": 50
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 1224466990,
+
+    "spacing": 16,
+    "separation": 6,
+
+    "exclusion_zone": {
+      "chunk_count": 20,
+      "other_set": "minecraft:swamp"
+    }
+  }
+}

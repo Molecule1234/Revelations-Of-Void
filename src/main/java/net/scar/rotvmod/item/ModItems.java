@@ -60,7 +60,7 @@ public class ModItems {
             () -> new ModBoatItem(true, ModBoatEntity.Type.VOID, new Item.Properties()));
 
     public static final RegistryObject<Item> AURORA_MUSIC_DISC = ITEMS.register("aurora_music_disc",
-            () -> new RecordItem(6, ModSounds.AURORA, new Item.Properties().stacksTo(1), 2440));
+            () -> new RecordItem(6, ModSounds.AURORA, new Item.Properties().stacksTo(1), 9900));
     public static final RegistryObject<Item> CALM_MUSIC_DISC = ITEMS.register("calm_music_disc",
             () -> new RecordItem(6, ModSounds.CALM, new Item.Properties().stacksTo(1), 2440));
     public static final RegistryObject<Item> DEORIUM_MUSIC_DISC = ITEMS.register("deorium_music_disc",

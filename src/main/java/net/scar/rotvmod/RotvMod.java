@@ -40,7 +40,6 @@ public class RotvMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeTabs.register(modEventBus);
-        ModSounds.register(modEventBus);
 
         ModItems.register(modEventBus);
 
@@ -52,6 +51,8 @@ public class RotvMod {
 
         ModTrunkPlacerTypes.register(modEventBus);
         ModFoliagePlacers.register(modEventBus);
+
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

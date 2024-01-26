@@ -10,6 +10,7 @@ import net.scar.rotvmod.block.entity.ModHangingSignBlockEntity;
 import net.scar.rotvmod.block.entity.ModSignBlockEntity;
 import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.block.entity.alchemy.AlchemyFurnaceBlockEntity;
+import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
@@ -20,18 +21,18 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("alchemy_furnace", () ->
                     BlockEntityType.Builder.of(AlchemyFurnaceBlockEntity::new,
                             ModBlocks.ALCHEMY_FURNACE.get()).build(null));
-    public static final RegistryObject<BlockEntityType<AlchemyFurnaceBlockEntity>> VOID_EXTRACTOR =
+    public static final RegistryObject<BlockEntityType<VoidExtractorBlockEntity>> VOID_EXTRACTOR =
             BLOCK_ENTITIES.register("void_extractor", () ->
-                    BlockEntityType.Builder.of(AlchemyFurnaceBlockEntity::new,
+                    BlockEntityType.Builder.of(VoidExtractorBlockEntity::new,
                             ModBlocks.VOID_EXTRACTOR.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN =
-            BLOCK_ENTITIES.register("mod_sign", () ->
+    public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> VOID_SIGN =
+            BLOCK_ENTITIES.register("void_sign", () ->
                     BlockEntityType.Builder.of(ModSignBlockEntity::new,
                             ModBlocks.VOID_SIGN.get(), ModBlocks.VOID_WALL_SIGN.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<ModHangingSignBlockEntity>> MOD_HANGING_SIGN =
-            BLOCK_ENTITIES.register("mod_hanging_sign", () ->
+    public static final RegistryObject<BlockEntityType<ModHangingSignBlockEntity>> VOID_HANGING_SIGN =
+            BLOCK_ENTITIES.register("void_hanging_sign", () ->
                     BlockEntityType.Builder.of(ModHangingSignBlockEntity::new,
                             ModBlocks.VOID_HANGING_SIGN.get(), ModBlocks.VOID_WALL_HANGING_SIGN.get()).build(null));
 

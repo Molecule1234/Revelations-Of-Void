@@ -8,11 +8,11 @@ import net.scar.rotvmod.entity.ModBlockEntities;
 
 public class ModHangingSignBlockEntity extends SignBlockEntity {
     public ModHangingSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.MOD_HANGING_SIGN.get(), pPos, pBlockState);
+        super(ModBlockEntities.VOID_HANGING_SIGN.get(), pPos, pBlockState);
     }
 
     @Override
     public BlockEntityType<?> getType() {
-        return ModBlockEntities.MOD_HANGING_SIGN.get();
+        return ModBlockEntities.VOID_HANGING_SIGN.get();
     }
 }

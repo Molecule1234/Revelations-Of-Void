@@ -22,7 +22,7 @@ public class ModEventBusClientEvents {
 
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.VOID_SIGN.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.VOID_HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 }

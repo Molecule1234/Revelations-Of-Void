@@ -1,4 +1,4 @@
-name: Build Gradle project
+name: Build Mod
 
 on:
   push:
@@ -6,10 +6,6 @@ on:
 jobs:
   build-gradle-project:
     runs-on: ubuntu-latest
-    outputs:
-      upload_url: ${{ steps.build-gradle-project.outputs.upload_url }}
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - name: Checkout project sources
       uses: actions/checkout@v3
@@ -23,7 +19,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle Wrapper
       run: ./gradlew build
-    - name: Upload Artifact
+    - name: Upload Mod
       uses: actions/upload-artifact@v4
       with:
         name: rotv-1.20.1

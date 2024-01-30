@@ -28,16 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-mod
     steps:
-      - name: Send building message to discord
-        uses: Ilshidur/action-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "Building mod"
-       
       - name: Send build file to discord
-        uses: sinshutu/upload-to-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: appleboy/discord-action@master
         with:
-          args: ./build/libs/*.jar
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          file: "../build/libs/rotv-1.0.0.6-1.20.1.jar"
+          message: "Send Multiple File."

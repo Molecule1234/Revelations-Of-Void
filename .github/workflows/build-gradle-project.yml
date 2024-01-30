@@ -26,6 +26,7 @@ jobs:
         path: ./build/libs/rotv-1.0.0.6-1.20.1.jar
   send-discord:
     runs-on: ubuntu-latest
+    needs: build-mod
     steps:
     - uses: actions/checkout@master
     - name: Send build file to discord channel

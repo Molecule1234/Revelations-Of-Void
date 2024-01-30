@@ -27,5 +27,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: rotv-1.20.1
-        path: ./build/libs/rotv-1.0.0.7-1.20.1.jar
+        path: ./build/libs/rotv-1.0.0.6-1.20.1.jar
  

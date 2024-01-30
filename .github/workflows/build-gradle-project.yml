@@ -29,10 +29,11 @@ jobs:
     needs: build-mod
     steps:
       - name: Send building message to discord
-        uses: realRobotix/action-discord-notifier@release-master
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message-title: Building mod 
+          args: "Building mod"
        
       - name: Send build file to discord
         uses: sinshutu/upload-to-discord@master

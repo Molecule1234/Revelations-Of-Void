@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build-gradle-project:
+  build-mod:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout project sources
@@ -24,4 +24,13 @@ jobs:
       with:
         name: rotv-1.20.1
         path: ./build/libs/rotv-1.0.0.6-1.20.1.jar
- 
+  send-discord:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Send build file to discord channel
+      uses: sinshutu/upload-to-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      with:
+        args: ./build/libs/rotv-1.0.0.6-1.20.1.jar

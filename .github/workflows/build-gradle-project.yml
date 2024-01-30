@@ -23,28 +23,9 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle Wrapper
       run: ./gradlew build
-
-  release_assets:
-      name: Release assets
-      needs: build-gradle-project
-      runs-on: ubuntu-latest
-      steps:
-        # checkout of cource
-        - name: Checkout code
-          uses: actions/checkout@v3
-        - name: Upload release assets
-          uses: actions/upload-release-asset@v3
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ needs.build-gradle-project.outputs.upload_url }}
-            # This is how it will be named on the release page. Put hatever name
-            # you like, remember that they need to be different for each platform.
-            # You can choose any build matrix parameters. For Rust I use the
-            # target triple.
-            asset_name: rotv-1.20.1
-            # The path to the file you want to upload.
-            asset_path: ./build/libs/
-            # probably you will need to change it, but most likely you are
-            # uploading a binary file
-            asset_content_type: application/octet-stream
+    - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rotv-1.20.1
+          path: build/libs/rotv-1.0.0.7-1.20.1.jar
+ 

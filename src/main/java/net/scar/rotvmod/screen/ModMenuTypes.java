@@ -16,7 +16,8 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<AlchemyFurnaceMenu>> ALCHEMY_FURNACE_MENU =
             registerMenuType("alchemy_furnace_menu", AlchemyFurnaceMenu::new);
-
+    public static final RegistryObject<MenuType<VoidExtractorMenu>> VOID_EXTRACTOR_MENU =
+            registerMenuType("void_extractor_menu", VoidExtractorMenu::new);
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

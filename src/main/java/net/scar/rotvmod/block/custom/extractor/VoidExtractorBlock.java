@@ -2,6 +2,7 @@ package net.scar.rotvmod.block.custom.extractor;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.scar.rotvmod.RotvMod;
+import net.minecraftforge.network.NetworkHooks;
 import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
 import net.scar.rotvmod.entity.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
@@ -82,8 +83,13 @@ public class VoidExtractorBlock extends BaseEntityBlock  {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(!pLevel.isClientSide()) {
-            RotvMod.LOGGER.info("" + pState.getValue(LIT) + "");
             pLevel.setBlock(pPos, pState.cycle(LIT),3);
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if(entity instanceof VoidExtractorBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (VoidExtractorBlockEntity)entity, pPos);
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
+            }
         }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());

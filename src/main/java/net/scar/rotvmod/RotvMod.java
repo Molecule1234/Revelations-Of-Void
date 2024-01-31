@@ -25,6 +25,7 @@ import net.scar.rotvmod.item.ModCreativeTabs;
 import net.scar.rotvmod.item.ModItems;
 import net.scar.rotvmod.screen.AlchemyFurnaceScreen;
 import net.scar.rotvmod.screen.ModMenuTypes;
+import net.scar.rotvmod.screen.VoidExtractorScreen;
 import net.scar.rotvmod.sound.ModSounds;
 import net.scar.rotvmod.util.ModWoodTypes;
 import org.slf4j.Logger;
@@ -171,6 +172,7 @@ public class RotvMod {
             EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
             EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
+            MenuScreens.register(ModMenuTypes.VOID_EXTRACTOR_MENU.get(), VoidExtractorScreen::new);
             MenuScreens.register(ModMenuTypes.ALCHEMY_FURNACE_MENU.get(), AlchemyFurnaceScreen::new);
         }
     }

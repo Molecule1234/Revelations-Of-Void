@@ -10,7 +10,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.FurnaceFuelSlot;
+import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.scar.rotvmod.RotvMod;
 
 public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMenu> {
@@ -55,26 +57,34 @@ public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMe
 
         if (pX >= (i + 128) && pX <= (i + 136) && pY >= (j + 12) && pY <= (j + 66)) {
             String voidFluid = String.valueOf(menu.getVoidFluid());
-            pGuiGraphics.renderTooltip(this.font, Component.literal("Пустота: ").append(voidFluid).append(" / 100"), pX, pY);
+            String voidMaxFluid = String.valueOf(menu.getMaxVoidFluid());
+            pGuiGraphics.renderTooltip(this.font, Component.literal("Пустота: ").append(voidFluid).append(" / ").append(voidMaxFluid), pX, pY);
         }
 
     }
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isCrafting()) {
+        if (menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 74, y + 33, 176, 0, menu.getScaledProgress(), 16);
         }
     }
 
+
     private void renderProgressFuel(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isCrafting()) {
-            int l = menu.getScaledProgress();
-            guiGraphics.blit(TEXTURE, x + 58, y + 33, 204, 0, 16, 1 + l);
+        if (menu.isCrafting()) {
+            int k = this.menu.getLitProgress();
+            int j = 0;
+
+            if (k > 0) { j = 1; }
+
+            guiGraphics.blit(TEXTURE, x + 58, y + 34 + 12 - k, 204, 12 - k, 16, k + j);
         }
     }
 
     private void renderVoid(GuiGraphics guiGraphics, int x, int y) {
-        guiGraphics.blit(TEXTURE, x + 128, y + 65 - menu.getVoidFluid(), 176, 18, 8, menu.getVoidFluid());
+        int height = Math.round((float) menu.getVoidFluid() / 40);
+        if (height == 50) { height++; }
+        guiGraphics.blit(TEXTURE, x + 128, y + 65 - height, 176, 18, 8, height);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package net.scar.rotvmod.block.entity.extractor;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -13,16 +15,28 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.BlastingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.BlastFurnaceBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FurnaceBlock;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.scar.rotvmod.RotvMod;
+import net.scar.rotvmod.block.custom.extractor.VoidExtractorBlock;
 import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.item.ModItems;
 import net.scar.rotvmod.screen.VoidExtractorMenu;
@@ -42,7 +56,11 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
     private int progress = 0;
     private int maxProgress = 78;
     private int fluidVoid = 0;
-    private int maxFluidVoid = 52;
+    private int maxFluidVoid = 2000;
+    public int litTime = 0;
+    public int litDuration = 0;
+    public int cookingProgress = 0;
+    public int cookingTotalTime = 0;
 
     public VoidExtractorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.VOID_EXTRACTOR.get(), pPos, pBlockState);
@@ -54,6 +72,10 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
                     case 1 -> VoidExtractorBlockEntity.this.maxProgress;
                     case 2 -> VoidExtractorBlockEntity.this.fluidVoid;
                     case 3 -> VoidExtractorBlockEntity.this.maxFluidVoid;
+                    case 4 -> VoidExtractorBlockEntity.this.litTime;
+                    case 5 -> VoidExtractorBlockEntity.this.litDuration;
+                    case 6 -> VoidExtractorBlockEntity.this.cookingProgress;
+                    case 7 -> VoidExtractorBlockEntity.this.cookingTotalTime;
                     default -> 0;
                 };
             }
@@ -65,12 +87,16 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
                     case 1 -> VoidExtractorBlockEntity.this.maxProgress = pValue;
                     case 2 -> VoidExtractorBlockEntity.this.fluidVoid = pValue;
                     case 3 -> VoidExtractorBlockEntity.this.maxFluidVoid = pValue;
+                    case 4 -> VoidExtractorBlockEntity.this.litTime = pValue;
+                    case 5 -> VoidExtractorBlockEntity.this.litDuration = pValue;
+                    case 6 -> VoidExtractorBlockEntity.this.cookingProgress = pValue;
+                    case 7 -> VoidExtractorBlockEntity.this.cookingTotalTime = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 8;
             }
         };
     }
@@ -120,7 +146,10 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("void_extractor.progress", progress);
         pTag.putInt("void_extractor.fluid_void", fluidVoid);
-
+        pTag.putInt("litTime", litTime);
+        pTag.putInt("litDuration", litDuration);
+        pTag.putInt("cookingProgress", cookingProgress);
+        pTag.putInt("cookingTotalTime", cookingTotalTime);
         super.saveAdditional(pTag);
     }
 
@@ -130,19 +159,49 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("void_extractor.progress");
         fluidVoid = pTag.getInt("void_extractor.fluid_void");
+        litTime = pTag.getInt("BurnTime");
+        cookingProgress = pTag.getInt("CookTime");
+        cookingTotalTime = pTag.getInt("CookTimeTotal");
+        litDuration = this.getBurnDuration(itemHandler.getStackInSlot(1));
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(hasRecipe()) {
-            increaseCraftingProgress();
-            setChanged(pLevel, pPos, pState);
+        if (this.isLit()) {
+            --this.litTime;
+        }
 
-            if(hasProgressFinished()) {
-                craftItem();
-                resetProgress();
+        if(hasRecipe()) {
+
+            if (!this.isLit()) {
+                this.litTime = this.getBurnDuration(itemHandler.getStackInSlot(1));
+                this.litDuration = this.litTime;
+
+                if (this.litTime > 0) {
+                    itemHandler.getStackInSlot(1).shrink(1);
+                    pState = pState.setValue(VoidExtractorBlock.LIT, !this.isLit());
+                    pLevel.setBlock(pPos, pState, 3);
+                    setChanged(pLevel, pPos, pState);
+                }
+
+            } else {
+                if (this.litTime > 0) {
+                    increaseCraftingProgress();
+                    setChanged(pLevel, pPos, pState);
+
+                    if (hasProgressFinished()) {
+                        craftItem();
+                        resetProgress();
+                        setChanged(pLevel, pPos, pState);
+                    }
+                }
             }
         } else {
             resetProgress();
+
+            pState = pState.setValue(VoidExtractorBlock.LIT, this.isLit());
+            pLevel.setBlock(pPos, pState, 3);
+
+            setChanged(pLevel, pPos, pState);
         }
     }
 
@@ -152,11 +211,8 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
 
 
     private void addVoid(int count) {
-        if ((fluidVoid + count) > maxFluidVoid) {
-            return;
-        }
-
-        fluidVoid += count;
+        int availableSpace = maxFluidVoid - fluidVoid;
+        fluidVoid += Math.min(count, availableSpace);
     }
 
     private void craftItem() {
@@ -165,7 +221,7 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
-        this.addVoid(2);
+        this.addVoid(300);
     }
 
     private boolean hasRecipe() {
@@ -189,5 +245,72 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
 
     private void increaseCraftingProgress() {
         progress++;
+    }
+
+    public boolean isFuel(ItemStack pStack) {
+        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
+    }
+
+    public int getBurnDuration(ItemStack pFuel) {
+        if (pFuel.isEmpty()) {
+            return 0;
+        } else {
+            Item item = pFuel.getItem();
+            return net.minecraftforge.common.ForgeHooks.getBurnTime(pFuel, RecipeType.SMELTING);
+        }
+    }
+
+    public boolean canBurn(RegistryAccess pRegistryAccess, SmeltingRecipe pRecipe, int pMaxStackSize) {
+        if (!itemHandler.getStackInSlot(0).isEmpty() && pRecipe != null) {
+            SimpleContainer inv = new SimpleContainer(1);
+            inv.setItem(0, itemHandler.getStackInSlot(0));
+
+            ItemStack itemstack = pRecipe.assemble(inv, pRegistryAccess);
+            if (itemstack.isEmpty()) {
+                return false;
+            } else {
+                ItemStack itemstack1 = itemHandler.getStackInSlot(2);
+                if (itemstack1.isEmpty()) {
+                    return true;
+                } else if (!ItemStack.isSameItem(itemstack1, itemstack)) {
+                    return false;
+                } else if (itemstack1.getCount() + itemstack.getCount() <= pMaxStackSize && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
+                    return true;
+                } else {
+                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+                }
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean burn(RegistryAccess pRegistryAccess, SmeltingRecipe pRecipe, int pMaxStackSize) {
+        if (pRecipe != null && this.canBurn(pRegistryAccess, pRecipe, pMaxStackSize)) {
+            SimpleContainer inv = new SimpleContainer(1);
+            inv.setItem(0, itemHandler.getStackInSlot(0));
+
+            ItemStack itemstack = itemHandler.getStackInSlot(0);
+            ItemStack itemstack1 = pRecipe.assemble(inv, pRegistryAccess);
+            ItemStack itemstack2 = itemHandler.getStackInSlot(2);
+            if (itemstack2.isEmpty()) {
+                itemHandler.setStackInSlot(2, itemstack1.copy());
+            } else if (itemstack2.is(itemstack1.getItem())) {
+                itemstack2.grow(itemstack1.getCount());
+            }
+
+            if (itemstack.is(Blocks.WET_SPONGE.asItem()) && !itemHandler.getStackInSlot(1).isEmpty() && itemHandler.getStackInSlot(1).is(Items.BUCKET)) {
+                itemHandler.setStackInSlot(1, new ItemStack(Items.WATER_BUCKET));
+            }
+
+            itemstack.shrink(1);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isLit() {
+        return this.litTime > 0;
     }
 }

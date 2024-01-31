@@ -1,16 +1,21 @@
 package net.scar.rotvmod.screen;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
+import net.scar.rotvmod.inventory.ExtractorFuelSlot;
+import net.scar.rotvmod.inventory.ResultSlot;
 
 public class VoidExtractorMenu extends AbstractContainerMenu {
     public final VoidExtractorBlockEntity blockEntity;
@@ -18,12 +23,12 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public VoidExtractorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
     }
 
     public VoidExtractorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.VOID_EXTRACTOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 3);
+        checkContainerSize(inv, 10);
         blockEntity = ((VoidExtractorBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -33,8 +38,8 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
             this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 16));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 56, 49));
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 104, 32));
+            this.addSlot(new ExtractorFuelSlot(this, iItemHandler, 1, 56, 49));
+            this.addSlot(new ResultSlot(iItemHandler, 2, 104, 32));
         });
 
         addDataSlots(data);
@@ -42,6 +47,20 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
 
     public boolean isCrafting() {
         return data.get(0) > 0;
+    }
+
+    public int getLitProgress() {
+        int i = this.data.get(5);
+        if (i == 0) {
+            i = 200;
+        }
+
+        return this.data.get(4) * 12 / i;
+    }
+
+    public int getLitTime() {
+        int litTime = this.data.get(4);
+        return litTime;
     }
 
     public int getScaledProgress() {
@@ -130,5 +149,9 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+    }
+
+    public boolean isFuel(ItemStack pStack) {
+        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
     }
 }

@@ -2,7 +2,11 @@ package net.scar.rotvmod.block.custom.extractor;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +22,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -25,6 +30,8 @@ import net.minecraftforge.network.NetworkHooks;
 import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
 import net.scar.rotvmod.entity.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.ToIntFunction;
 
 
 public class VoidExtractorBlock extends BaseEntityBlock  {
@@ -35,6 +42,7 @@ public class VoidExtractorBlock extends BaseEntityBlock  {
     public VoidExtractorBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH));
+        registerDefaultState(defaultBlockState().setValue(LIT, false));
     }
 
     @Override
@@ -83,7 +91,6 @@ public class VoidExtractorBlock extends BaseEntityBlock  {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(!pLevel.isClientSide()) {
-            pLevel.setBlock(pPos, pState.cycle(LIT),3);
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof VoidExtractorBlockEntity) {
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), (VoidExtractorBlockEntity)entity, pPos);
@@ -111,4 +118,25 @@ public class VoidExtractorBlock extends BaseEntityBlock  {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.VOID_EXTRACTOR.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
+
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pState.getValue(LIT)) {
+            double d0 = (double)pPos.getX() + 0.5D;
+            double d1 = (double)pPos.getY();
+            double d2 = (double)pPos.getZ() + 0.5D;
+            if (pRandom.nextDouble() < 0.1D) {
+                pLevel.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+
+            Direction direction = pState.getValue(FACING);
+            Direction.Axis direction$axis = direction.getAxis();
+            double d3 = 0.52D;
+            double d4 = pRandom.nextDouble() * 0.6D - 0.3D;
+            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52D : d4;
+            double d6 = pRandom.nextDouble() * 9.0D / 16.0D;
+            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52D : d4;
+            pLevel.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
 }

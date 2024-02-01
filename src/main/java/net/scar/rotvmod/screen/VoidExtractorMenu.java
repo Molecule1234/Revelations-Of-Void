@@ -23,12 +23,12 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public VoidExtractorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
     public VoidExtractorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.VOID_EXTRACTOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 10);
+        checkContainerSize(inv, 6);
         blockEntity = ((VoidExtractorBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -55,12 +55,7 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
             i = 200;
         }
 
-        return this.data.get(4) * 12 / i;
-    }
-
-    public int getLitTime() {
-        int litTime = this.data.get(4);
-        return litTime;
+        return this.data.get(4) * 13 / i;
     }
 
     public int getScaledProgress() {

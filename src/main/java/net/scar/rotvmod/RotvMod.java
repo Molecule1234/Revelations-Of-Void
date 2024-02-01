@@ -23,6 +23,7 @@ import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.entity.ModEntities;
 import net.scar.rotvmod.item.ModCreativeTabs;
 import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.recipe.ModRecipes;
 import net.scar.rotvmod.screen.AlchemyFurnaceScreen;
 import net.scar.rotvmod.screen.ModMenuTypes;
 import net.scar.rotvmod.screen.VoidExtractorScreen;
@@ -47,6 +48,8 @@ public class RotvMod {
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         ModEntities.register(modEventBus);
 

@@ -1,0 +1,12 @@
+{
+  "type": "rotv:void_extractor",
+  "ingredients": [
+    {
+      "item": "rotv:overflown_void_tree_bark"
+    }
+  ],
+  "void": 600,
+  "output": {
+    "item": "rotv:overflown_void_tree_bark"
+  }
+}

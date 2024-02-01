@@ -1,18 +1,14 @@
 package net.scar.rotvmod.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.FurnaceFuelSlot;
-import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.scar.rotvmod.RotvMod;
 
 public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMenu> {
@@ -56,29 +52,29 @@ public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMe
         int j = this.topPos;
 
         if (pX >= (i + 128) && pX <= (i + 136) && pY >= (j + 12) && pY <= (j + 66)) {
-            String voidFluid = String.valueOf(menu.getVoidFluid());
-            String voidMaxFluid = String.valueOf(menu.getMaxVoidFluid());
-            pGuiGraphics.renderTooltip(this.font, Component.literal("Пустота: ").append(voidFluid).append(" / ").append(voidMaxFluid), pX, pY);
+            pGuiGraphics.renderTooltip(this.font, this.guiTextVoidFluid(), pX, pY);
         }
 
     }
 
+    private MutableComponent guiTextVoidFluid() {
+        String voidFluid = String.valueOf(menu.getVoidFluid());
+        String voidMaxFluid = String.valueOf(menu.getMaxVoidFluid());
+        return Component.translatable("gui.void_extractor.void_fluid", voidFluid, voidMaxFluid);
+    }
+
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 74, y + 33, 176, 0, menu.getScaledProgress(), 16);
-        }
+        guiGraphics.blit(TEXTURE, x + 74, y + 33, 176, 0, menu.getScaledProgress(), 16);
     }
 
 
     private void renderProgressFuel(GuiGraphics guiGraphics, int x, int y) {
-        if (menu.isCrafting()) {
-            int k = this.menu.getLitProgress();
-            int j = 0;
+        int k = this.menu.getLitProgress();
+        int j = 0;
 
-            if (k > 0) { j = 1; }
+        if (k > 0) { j = 1; }
 
-            guiGraphics.blit(TEXTURE, x + 58, y + 34 + 12 - k, 204, 12 - k, 16, k + j);
-        }
+        guiGraphics.blit(TEXTURE, x + 58, y + 34 + 12 - k, 204, 12 - k, 16, k + j);
     }
 
     private void renderVoid(GuiGraphics guiGraphics, int x, int y) {

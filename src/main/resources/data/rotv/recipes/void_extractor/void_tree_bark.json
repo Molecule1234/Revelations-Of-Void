@@ -1,0 +1,12 @@
+{
+  "type": "rotv:void_extractor",
+  "ingredients": [
+    {
+      "item": "rotv:void_tree_bark"
+    }
+  ],
+  "void": 200,
+  "output": {
+    "item": "rotv:void_tree_bark"
+  }
+}

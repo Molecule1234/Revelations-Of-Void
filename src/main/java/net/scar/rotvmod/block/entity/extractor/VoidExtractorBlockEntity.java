@@ -39,9 +39,12 @@ import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.custom.extractor.VoidExtractorBlock;
 import net.scar.rotvmod.entity.ModBlockEntities;
 import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.recipe.VoidExtractorRecipe;
 import net.scar.rotvmod.screen.VoidExtractorMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(3);
@@ -59,8 +62,6 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
     private int maxFluidVoid = 2000;
     public int litTime = 0;
     public int litDuration = 0;
-    public int cookingProgress = 0;
-    public int cookingTotalTime = 0;
 
     public VoidExtractorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.VOID_EXTRACTOR.get(), pPos, pBlockState);
@@ -74,8 +75,6 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
                     case 3 -> VoidExtractorBlockEntity.this.maxFluidVoid;
                     case 4 -> VoidExtractorBlockEntity.this.litTime;
                     case 5 -> VoidExtractorBlockEntity.this.litDuration;
-                    case 6 -> VoidExtractorBlockEntity.this.cookingProgress;
-                    case 7 -> VoidExtractorBlockEntity.this.cookingTotalTime;
                     default -> 0;
                 };
             }
@@ -89,14 +88,12 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
                     case 3 -> VoidExtractorBlockEntity.this.maxFluidVoid = pValue;
                     case 4 -> VoidExtractorBlockEntity.this.litTime = pValue;
                     case 5 -> VoidExtractorBlockEntity.this.litDuration = pValue;
-                    case 6 -> VoidExtractorBlockEntity.this.cookingProgress = pValue;
-                    case 7 -> VoidExtractorBlockEntity.this.cookingTotalTime = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 8;
+                return 6;
             }
         };
     }
@@ -148,8 +145,6 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         pTag.putInt("void_extractor.fluid_void", fluidVoid);
         pTag.putInt("litTime", litTime);
         pTag.putInt("litDuration", litDuration);
-        pTag.putInt("cookingProgress", cookingProgress);
-        pTag.putInt("cookingTotalTime", cookingTotalTime);
         super.saveAdditional(pTag);
     }
 
@@ -159,34 +154,31 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("void_extractor.progress");
         fluidVoid = pTag.getInt("void_extractor.fluid_void");
-        litTime = pTag.getInt("BurnTime");
-        cookingProgress = pTag.getInt("CookTime");
-        cookingTotalTime = pTag.getInt("CookTimeTotal");
+        litTime = pTag.getInt("litTime");
         litDuration = this.getBurnDuration(itemHandler.getStackInSlot(1));
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (this.isLit()) {
-            --this.litTime;
+            --litTime;
+        } else if (progress > 0) {
+            --progress;
         }
+
 
         if(hasRecipe()) {
 
             if (!this.isLit()) {
-                this.litTime = this.getBurnDuration(itemHandler.getStackInSlot(1));
-                this.litDuration = this.litTime;
+                litTime = this.getBurnDuration(itemHandler.getStackInSlot(1));
+                litDuration = this.litTime;
 
                 if (this.litTime > 0) {
                     itemHandler.getStackInSlot(1).shrink(1);
-                    pState = pState.setValue(VoidExtractorBlock.LIT, !this.isLit());
-                    pLevel.setBlock(pPos, pState, 3);
-                    setChanged(pLevel, pPos, pState);
                 }
 
             } else {
                 if (this.litTime > 0) {
                     increaseCraftingProgress();
-                    setChanged(pLevel, pPos, pState);
 
                     if (hasProgressFinished()) {
                         craftItem();
@@ -197,12 +189,11 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
             }
         } else {
             resetProgress();
-
-            pState = pState.setValue(VoidExtractorBlock.LIT, this.isLit());
-            pLevel.setBlock(pPos, pState, 3);
-
             setChanged(pLevel, pPos, pState);
         }
+
+        pState = pState.setValue(VoidExtractorBlock.LIT, this.isLit());
+        pLevel.setBlock(pPos, pState, 3);
     }
 
     private void resetProgress() {
@@ -216,19 +207,34 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.INGOT_ALTURIUM.get(), 1);
+        Optional<VoidExtractorRecipe> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().getResultItem(null);
+
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
-        this.addVoid(300);
+        this.addVoid(recipe.get().getVoidFluid());
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.RAW_ALTURIUM.get();
-        ItemStack result = new ItemStack(ModItems.INGOT_ALTURIUM.get());
+        Optional<VoidExtractorRecipe> recipe = getCurrentRecipe();
 
-        return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        if(recipe.isEmpty()) {
+            return false;
+        }
+        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+
+        return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+    }
+
+    private Optional<VoidExtractorRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        for(int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
+        }
+
+        return this.level.getRecipeManager().getRecipeFor(VoidExtractorRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
@@ -257,56 +263,6 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         } else {
             Item item = pFuel.getItem();
             return net.minecraftforge.common.ForgeHooks.getBurnTime(pFuel, RecipeType.SMELTING);
-        }
-    }
-
-    public boolean canBurn(RegistryAccess pRegistryAccess, SmeltingRecipe pRecipe, int pMaxStackSize) {
-        if (!itemHandler.getStackInSlot(0).isEmpty() && pRecipe != null) {
-            SimpleContainer inv = new SimpleContainer(1);
-            inv.setItem(0, itemHandler.getStackInSlot(0));
-
-            ItemStack itemstack = pRecipe.assemble(inv, pRegistryAccess);
-            if (itemstack.isEmpty()) {
-                return false;
-            } else {
-                ItemStack itemstack1 = itemHandler.getStackInSlot(2);
-                if (itemstack1.isEmpty()) {
-                    return true;
-                } else if (!ItemStack.isSameItem(itemstack1, itemstack)) {
-                    return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= pMaxStackSize && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-                    return true;
-                } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
-                }
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public boolean burn(RegistryAccess pRegistryAccess, SmeltingRecipe pRecipe, int pMaxStackSize) {
-        if (pRecipe != null && this.canBurn(pRegistryAccess, pRecipe, pMaxStackSize)) {
-            SimpleContainer inv = new SimpleContainer(1);
-            inv.setItem(0, itemHandler.getStackInSlot(0));
-
-            ItemStack itemstack = itemHandler.getStackInSlot(0);
-            ItemStack itemstack1 = pRecipe.assemble(inv, pRegistryAccess);
-            ItemStack itemstack2 = itemHandler.getStackInSlot(2);
-            if (itemstack2.isEmpty()) {
-                itemHandler.setStackInSlot(2, itemstack1.copy());
-            } else if (itemstack2.is(itemstack1.getItem())) {
-                itemstack2.grow(itemstack1.getCount());
-            }
-
-            if (itemstack.is(Blocks.WET_SPONGE.asItem()) && !itemHandler.getStackInSlot(1).isEmpty() && itemHandler.getStackInSlot(1).is(Items.BUCKET)) {
-                itemHandler.setStackInSlot(1, new ItemStack(Items.WATER_BUCKET));
-            }
-
-            itemstack.shrink(1);
-            return true;
-        } else {
-            return false;
         }
     }
 

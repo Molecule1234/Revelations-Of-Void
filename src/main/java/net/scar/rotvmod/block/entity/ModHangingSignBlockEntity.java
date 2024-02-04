@@ -2,13 +2,14 @@ package net.scar.rotvmod.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.scar.rotvmod.entity.ModBlockEntities;
 
-public class ModHangingSignBlockEntity extends SignBlockEntity {
-    public ModHangingSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.VOID_HANGING_SIGN.get(), pPos, pBlockState);
+public class ModHangingSignBlockEntity extends HangingSignBlockEntity {
+    public ModHangingSignBlockEntity(BlockPos pPos, BlockState pState) {
+        super(pPos, pState);
     }
 
     @Override

@@ -5,5 +5,5 @@
   "use_resource_pack": true,
   "dont_generate_book": true,
   "custom_book_item": "rotv:ancient_tome",
-  "book_texture": "patchouli:textures/gui/book_gray.png"
+  "book_texture": "rotv:textures/gui/book_background.png"
 }

@@ -3,6 +3,7 @@ package net.scar.rotvmod.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,8 +23,13 @@ public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMe
     @Override
     protected void init() {
         super.init();
-        this.inventoryLabelY = 10000;
-        this.titleLabelY = 10000;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -40,6 +46,7 @@ public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMe
         renderProgressFuel(guiGraphics, x, y);
         renderVoid(guiGraphics, x, y);
     }
+
 
     @Override
     protected void renderTooltip(GuiGraphics pGuiGraphics, int pX, int pY) {
@@ -81,13 +88,6 @@ public class VoidExtractorScreen extends AbstractContainerScreen<VoidExtractorMe
         int height = Math.round((float) menu.getVoidFluid() / 40);
         if (height == 50) { height++; }
         guiGraphics.blit(TEXTURE, x + 128, y + 65 - height, 176, 18, 8, height);
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
 }

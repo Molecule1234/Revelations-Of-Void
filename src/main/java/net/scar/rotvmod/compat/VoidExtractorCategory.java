@@ -3,17 +3,24 @@ package net.scar.rotvmod.compat;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.recipe.VoidExtractorRecipe;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class VoidExtractorCategory implements IRecipeCategory<VoidExtractorRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RotvMod.MOD_ID, "void_extractor");
@@ -25,9 +32,12 @@ public class VoidExtractorCategory implements IRecipeCategory<VoidExtractorRecip
 
     private final IDrawable background;
     private final IDrawable icon;
+    static int xOff = 25 + 3;
+    static int yOff = 7;
+    static int xSize = 136 - 3;
 
     public VoidExtractorCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 172, 79);
+        this.background = helper.createDrawable(TEXTURE, 4, 4, 168, 76);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.VOID_EXTRACTOR.get()));
     }
 
@@ -53,8 +63,26 @@ public class VoidExtractorCategory implements IRecipeCategory<VoidExtractorRecip
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, VoidExtractorRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 16).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 52, 12).addIngredients(recipe.getIngredients().get(0));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 104, 32).addItemStack(recipe.getResultItem(null));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 100, 29).addItemStack(recipe.getResultItem(null));
+    }
+
+    @Override
+    public void draw(@NotNull VoidExtractorRecipe recipe, @NotNull IRecipeSlotsView view, @NotNull GuiGraphics gui, double mouseX, double mouseY) {
+        int height = Math.round((float) recipe.getVoidFluid() / 40);
+        if (height == 50) { height++; }
+        gui.blit(TEXTURE, 124, 62 - height, 176, 18, 8, height);
+    }
+
+    @Override
+    public List<Component> getTooltipStrings(VoidExtractorRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 124 && mouseX <= 131 && mouseY >= 10 && mouseY <= 61) {
+            String voidFluid = String.valueOf(recipe.getVoidFluid());
+            String voidMaxFluid = String.valueOf(2000);
+            return List.of(Component.translatable("gui.void_extractor.void_fluid", voidFluid, voidMaxFluid));
+        }
+
+        return List.of();
     }
 }

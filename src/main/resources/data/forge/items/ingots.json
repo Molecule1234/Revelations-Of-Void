@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rotv:ingot_alturium",
+    "rotv:ingot_deorium",
+    "rotv:ingot_overflown_deorium"
+  ]
+}

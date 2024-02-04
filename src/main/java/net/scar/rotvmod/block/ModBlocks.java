@@ -32,26 +32,26 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, RotvMod.MOD_ID);
 
     public static final RegistryObject<Block> IMBUED_STONE = registerBlock("imbued_stone",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS = registerBlock("imbued_stone_bricks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE_BRICKS).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE_BRICKS)));
     public static final RegistryObject<Block> POLISHED_IMBUED_STONE = registerBlock("polished_imbued_stone",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> CARVED_IMBUED_STONE = registerBlock("carved_imbued_stone",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> CRACKED_IMBUED_STONE_BRICKS = registerBlock("cracked_imbued_stone_bricks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE_BRICKS).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE_BRICKS)));
     public static final RegistryObject<Block> IMBUED_STONE_TILE = registerBlock("imbued_stone_tile",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).sound(SoundType.DEEPSLATE)));
 
     public static final RegistryObject<Block> VOID_LOG = registerBlock("void_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).strength(3f)));
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> VOID_WOOD = registerBlock("void_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).strength(3f)));
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
     public static final RegistryObject<Block> STRIPPED_VOID_LOG = registerBlock("stripped_void_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).strength(3f)));
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
     public static final RegistryObject<Block> STRIPPED_VOID_WOOD = registerBlock("stripped_void_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).strength(3f)));
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
 
     public static final RegistryObject<Block> VOID_SIGN = BLOCKS.register("void_sign",
             () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VOID));
@@ -172,37 +172,37 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> IMBUED_STONE_SLAB = registerBlock("imbued_stone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> IMBUED_STONE_STAIRS = registerBlock("imbued_stone_stairs",
             () -> new StairBlock(() -> ModBlocks.IMBUED_STONE.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> IMBUED_STONE_BUTTON = registerBlock("imbued_stone_button",
-            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE).strength(20.0f),
+            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE),
                     BlockSetType.STONE, 10, true));
     public static final RegistryObject<Block> IMBUED_STONE_WALL = registerBlock("imbued_stone_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE)));
 
     public static final RegistryObject<Block> POLISHED_IMBUED_STONE_SLAB = registerBlock("polished_imbued_stone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> POLISHED_IMBUED_STONE_STAIRS = registerBlock("polished_imbued_stone_stairs",
             () -> new StairBlock(() -> ModBlocks.POLISHED_IMBUED_STONE.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> POLISHED_IMBUED_STONE_BUTTON = registerBlock("polished_imbued_stone_button",
-            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE).strength(20.0f),
+            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE),
                     BlockSetType.STONE, 10, true));
     public static final RegistryObject<Block> POLISHED_IMBUED_STONE_WALL = registerBlock("polished_imbued_stone_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE)));
 
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS_SLAB = registerBlock("imbued_stone_bricks_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS_STAIRS = registerBlock("imbued_stone_bricks_stairs",
             () -> new StairBlock(() -> ModBlocks.IMBUED_STONE_BRICKS.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS_BUTTON = registerBlock("imbued_stone_bricks_button",
-            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE).strength(20.0f),
+            () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).sound(SoundType.DEEPSLATE),
                     BlockSetType.STONE, 10, true));
     public static final RegistryObject<Block> IMBUED_STONE_BRICKS_WALL = registerBlock("imbued_stone_bricks_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE).strength(20.0f)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.DEEPSLATE)));
 
 
 

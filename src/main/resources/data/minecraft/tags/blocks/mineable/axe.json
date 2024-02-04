@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "rotv:void_log",
+    "rotv:void_wood",
+    "rotv:stripped_void_log",
+    "rotv:stripped_void_wood",
+    "rotv:void_sign",
+    "rotv:void_wall_sign",
+    "rotv:void_hanging_sign",
+    "rotv:void_wall_hanging_sign",
+    "rotv:void_planks",
+    "rotv:void_stairs",
+    "rotv:void_slab",
+    "rotv:void_button",
+    "rotv:void_pressure_plate",
+    "rotv:void_fence",
+    "rotv:void_fence_gate",
+    "rotv:void_door",
+    "rotv:void_trapdoor",
+    "rotv:void_wall"
+  ]
+}

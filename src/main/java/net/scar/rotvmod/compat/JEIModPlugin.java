@@ -5,10 +5,13 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.scar.rotvmod.RotvMod;
+import net.scar.rotvmod.block.ModBlocks;
 import net.scar.rotvmod.recipe.VoidExtractorRecipe;
 import net.scar.rotvmod.screen.VoidExtractorScreen;
 
@@ -38,5 +41,10 @@ public class JEIModPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(VoidExtractorScreen.class, 60, 30, 20, 30,
                 VoidExtractorCategory.VOID_EXTRACTOR_TYPE);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.VOID_EXTRACTOR.get()), VoidExtractorCategory.VOID_EXTRACTOR_TYPE);
     }
 }

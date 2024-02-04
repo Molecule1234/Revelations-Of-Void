@@ -27,7 +27,7 @@ public class VoidExtractorCategory implements IRecipeCategory<VoidExtractorRecip
     private final IDrawable icon;
 
     public VoidExtractorCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 85);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 172, 79);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.VOID_EXTRACTOR.get()));
     }
 

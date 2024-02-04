@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rotv:void_stairs",
+    "rotv:imbued_stone_stairs",
+    "rotv:polished_imbued_stone_stairs",
+    "rotv:imbued_stone_bricks_stairs"
+
+  ]
+}

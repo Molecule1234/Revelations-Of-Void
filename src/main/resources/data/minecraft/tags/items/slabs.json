@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rotv:void_slab",
+    "rotv:imbued_stone_slab",
+    "rotv:polished_imbued_stone_slab",
+    "rotv:imbued_stone_bricks_slab"
+  ]
+}

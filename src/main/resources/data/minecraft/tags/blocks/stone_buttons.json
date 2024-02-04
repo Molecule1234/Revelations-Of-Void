@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rotv:imbued_stone_button",
+    "rotv:polished_imbued_stone_button",
+    "rotv:imbued_stone_bricks_button"
+  ]
+}

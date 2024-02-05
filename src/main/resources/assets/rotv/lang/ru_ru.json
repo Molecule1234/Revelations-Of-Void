@@ -1,4 +1,62 @@
 {
-  "block.rotv.void_extractor": "Пустотный Экстрактор",
+  "creativetab.main_tab": "Revelations Of The Void",
+
+  "item.rotv.alchemist_almanac": "Альманах",
+
+  "block.rotv.void_log": "Пустотное бревно",
+  "block.rotv.void_wood": "Пустотное дерево",
+  "block.rotv.stripped_void_log": "Обтёсанное пустотное бревно",
+  "block.rotv.stripped_void_wood": "Обтёсанная пустотная древесина",
+  "block.rotv.void_planks": "Пустотные доски",
+  "block.rotv.void_stairs": "Пустотные ступеньки",
+  "block.rotv.void_slab": "Пустотная плита",
+  "block.rotv.void_wall": "Пустотная стена",
+  "block.rotv.void_fence": "Пустотный забор",
+  "block.rotv.void_fence_gate": "Пустотная калитка",
+  "block.rotv.void_door": "Пустотная дверь",
+  "block.rotv.void_trapdoor": "Пустотный люк",
+  "block.rotv.void_pressure_plate": "Пустотная нажимная плита",
+  "block.rotv.void_button": "Пустотная кнопка",
+  "block.rotv.void_sign": "Пустотная табличка",
+  "block.rotv.void_hanging_sign": "Пустотная подвесная табличка",
+
+  "item.rotv.void_boat": "Пустотная лодка",
+  "item.rotv.void_chest_boat": "Пустотная грузовая лодка",
+
+  "item.rotv.ingot_alturium": "Алтуриумный слиток",
+  "item.rotv.ingot_deorium": "Деориумный слиток",
+  "item.rotv.ingot_overflown_deorium": "Переполенный деориумом слиток",
+
+  "item.rotv.nugget_alturium": "Кусочек алтуриума",
+  "item.rotv.nugget_deorium": "Кусочек деориума",
+  "item.rotv.nugget_overflown_deorium": "Кусочек переполненного деориума",
+
+  "item.rotv.raw_alturium": "Рудной алтуриум",
+  "item.rotv.raw_deorium": "Рудной деориум",
+  "item.rotv.raw_overflown_deorium": "Рудной переполненный деориум",
+
+  "item.rotv.clear_rune": "Чистая руна",
+  "item.rotv.void_tree_bark": "Кора пустотного дерева",
+
+  "block.rotv.void_flower": "Пустотный цветок",
+  "block.rotv.slime_flower": "Слаймовый цветок",
+  "block.rotv.void_sapling": "Пустотный саженец",
+
+  "block.rotv.void_leaves": "Пустотные листья",
+  "block.rotv.void_leaves_monochrome": "Монохронные пустотные листья",
+  "block.rotv.flowering_void_leaves": "Цветущие пустотные листья",
+
+  "item.rotv.void_gem": "Камень пустоты",
+
+  "block.rotv.alchemy_machine": "Алхимическая печка",
+  "block.rotv.void_extractor": "Пустотный экстрактор",
+
+  "item.rotv.imbued_brick": "Пропитанный кирпич",
+  "block.rotv.imbued_stone": "Пропитанный камень",
+  "block.rotv.imbued_stone_bricks": "Пропитанный кирпич",
+  "block.rotv.cracked_imbued_stone_bricks": "Потрескавшийся пропитанный кирпич",
+  "block.rotv.carved_imbued_stone": "Резной пропитанный камень",
+  "block.rotv.polished_imbued_stone": "Полированный пропитанный камень",
+
   "gui.void_extractor.void_fluid": "Пустота: %1$s / %2$s"
 }

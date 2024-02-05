@@ -1,5 +1,5 @@
-// 1.20.1	2024-01-26T14:26:14.1621035	Block States: rotv
-567665db77ba8a4ec04e6de6b42844b692b7776d assets/rotv/blockstates/alchemy_furnace.json
+// 1.20.1	2024-02-05T19:15:53.0273662	Block States: rotv
+567665db77ba8a4ec04e6de6b42844b692b7776d assets/rotv/blockstates/alchemy_machine.json
 70903b5d4f644465f27fb1da9a809ca68ad9fb5a assets/rotv/blockstates/carved_imbued_stone.json
 89e74d49819ef4aad2f961216615e15fbb312e5b assets/rotv/blockstates/cracked_imbued_stone_bricks.json
 eefe30073d2749b487a9b2aebba6cba186bfbceb assets/rotv/blockstates/flowering_void_leaves.json
@@ -128,7 +128,7 @@ b67592905ca84c76eecec9f83ddbb8768623f605 assets/rotv/models/block/void_wall_side
 d6f533ca67d1bc70a3f29cf0c86cbec48323411b assets/rotv/models/block/void_wall_side_tall.json
 37c57a189c0dc2b18afa8c637dadd2eeb96c9a95 assets/rotv/models/block/void_wood.json
 9632c40f388b4b35bdcd28cebabd57c9403780e4 assets/rotv/models/block/void_wood_horizontal.json
-0c72254f7f0dd22ebf8fe060307f49b2bf80aa60 assets/rotv/models/item/alchemy_furnace.json
+0c72254f7f0dd22ebf8fe060307f49b2bf80aa60 assets/rotv/models/item/alchemy_machine.json
 fd6693df071f7ab969b8a7d2d47a9d5afc69b6bb assets/rotv/models/item/carved_imbued_stone.json
 54e24ed9d338a14360f5a28a13a76032ef995a45 assets/rotv/models/item/cracked_imbued_stone_bricks.json
 f02b56b72f909d182a83f8d3bf4cc9a52b4ada90 assets/rotv/models/item/flowering_void_leaves.json

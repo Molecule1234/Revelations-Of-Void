@@ -11,8 +11,9 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.scar.rotvmod.block.ModBlocks;
-import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.registry.ModBlocks;
+import net.scar.rotvmod.registry.ModEntities;
+import net.scar.rotvmod.registry.ModItems;
 
 import java.util.function.IntFunction;
 

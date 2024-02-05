@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.client.renders.ModModelLayers;
-import net.scar.rotvmod.entity.ModBlockEntities;
+import net.scar.rotvmod.registry.ModBlockEntities;
 
 @Mod.EventBusSubscriber(modid = RotvMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventBusClientEvents {

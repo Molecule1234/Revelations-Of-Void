@@ -9,7 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
-import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.registry.ModBlocks;
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, RotvMod.MOD_ID, exFileHelper);
@@ -30,6 +30,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.STRIPPED_VOID_LOG);
         blockItem(ModBlocks.STRIPPED_VOID_WOOD);
         blockItem(ModBlocks.VOID_EXTRACTOR);
+        blockItem(ModBlocks.ALCHEMY_MACHINE);
 
         blockWithItem(ModBlocks.IMBUED_STONE);
         blockWithItem(ModBlocks.IMBUED_STONE_BRICKS);
@@ -88,7 +89,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         wallBlock(((WallBlock) ModBlocks.IMBUED_STONE_BRICKS_WALL.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
         buttonBlock(((ButtonBlock) ModBlocks.IMBUED_STONE_BRICKS_BUTTON.get()), blockTexture(ModBlocks.IMBUED_STONE_BRICKS.get()));
 
-        simpleBlockWithItem(ModBlocks.ALCHEMY_FURNACE.get(),
+        simpleBlockWithItem(ModBlocks.ALCHEMY_MACHINE.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/alchemy_furnace")));
 
         saplingBlock(ModBlocks.VOID_SAPLING);

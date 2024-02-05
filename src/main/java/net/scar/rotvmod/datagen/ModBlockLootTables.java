@@ -4,8 +4,8 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import net.scar.rotvmod.block.ModBlocks;
-import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.registry.ModBlocks;
+import net.scar.rotvmod.registry.ModItems;
 
 import java.util.Set;
 
@@ -83,7 +83,7 @@ public class ModBlockLootTables extends BlockLootSubProvider  {
                 block -> createSlabItemTable(ModBlocks.IMBUED_STONE_SLAB.get()));
         this.dropSelf(ModBlocks.IMBUED_STONE_WALL.get());
 
-        this.dropSelf(ModBlocks.ALCHEMY_FURNACE.get());
+        this.dropSelf(ModBlocks.ALCHEMY_MACHINE.get());
         this.dropSelf(ModBlocks.VOID_EXTRACTOR.get());
 
         this.dropSelf(ModBlocks.VOID_SAPLING.get());

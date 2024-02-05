@@ -9,14 +9,12 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.scar.rotvmod.RotvMod;
-import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.registry.ModBlocks;
 import net.scar.rotvmod.recipe.VoidExtractorRecipe;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,12 +30,9 @@ public class VoidExtractorCategory implements IRecipeCategory<VoidExtractorRecip
 
     private final IDrawable background;
     private final IDrawable icon;
-    static int xOff = 25 + 3;
-    static int yOff = 7;
-    static int xSize = 136 - 3;
 
     public VoidExtractorCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 4, 4, 168, 76);
+        this.background = helper.createDrawable(TEXTURE, 4, 4, 168, 72);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.VOID_EXTRACTOR.get()));
     }
 

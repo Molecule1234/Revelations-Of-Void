@@ -11,9 +11,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.scar.rotvmod.RotvMod;
-import net.scar.rotvmod.block.ModBlocks;
+import net.scar.rotvmod.registry.ModBlocks;
 import net.scar.rotvmod.recipe.VoidExtractorRecipe;
-import net.scar.rotvmod.screen.VoidExtractorScreen;
+import net.scar.rotvmod.inventory.screen.VoidExtractorScreen;
 
 import java.util.List;
 

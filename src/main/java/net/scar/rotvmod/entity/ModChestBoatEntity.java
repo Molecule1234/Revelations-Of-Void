@@ -9,7 +9,8 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.registry.ModEntities;
+import net.scar.rotvmod.registry.ModItems;
 
 public class ModChestBoatEntity extends ChestBoat {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);

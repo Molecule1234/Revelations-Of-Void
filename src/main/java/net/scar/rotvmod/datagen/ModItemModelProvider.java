@@ -10,8 +10,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
-import net.scar.rotvmod.block.ModBlocks;
-import net.scar.rotvmod.item.ModItems;
+import net.scar.rotvmod.registry.ModBlocks;
+import net.scar.rotvmod.registry.ModItems;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -20,9 +20,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.ANCIENT_TOME);
+        simpleItem(ModItems.ALCHEMIST_ALMANAC);
         simpleItem(ModItems.VOID_TREE_BARK);
-        simpleItem(ModItems.OVERFLOWN_VOID_TREE_BARK);
+        simpleItem(ModItems.VOID_FLOWER_PETAL);
+
+        simpleItem(ModItems.VOID_GEM);
 
         // Discs
         simpleItem(ModItems.AURORA_MUSIC_DISC);

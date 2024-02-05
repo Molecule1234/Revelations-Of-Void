@@ -1,5 +1,6 @@
 {
 
+  "block.rotv.alchemy_machine": "Alchemy Machine",
   "block.rotv.void_extractor": "Void Extractor",
   "gui.void_extractor.void_fluid": "Void: %1$s / %2$s"
 }

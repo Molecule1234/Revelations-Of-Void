@@ -1,5 +1,5 @@
-// 1.20.1	2024-01-25T13:00:03.8533663	Loot Tables
-caff5373b8011b86b2d31232431e89801ee0fb09 data/rotv/loot_tables/blocks/alchemy_furnace.json
+// 1.20.1	2024-02-05T19:15:53.0253572	Loot Tables
+b67ace70bf76199304b34a848fda3bed678b20ef data/rotv/loot_tables/blocks/alchemy_machine.json
 cc1a90557806c54bbe64c911acec18788790c014 data/rotv/loot_tables/blocks/carved_imbued_stone.json
 66f0c4cf20fea6dc12c121b46a294b4272bc4840 data/rotv/loot_tables/blocks/cracked_imbued_stone_bricks.json
 9974edcfd6423d5750cb2cc47907eaa2c650ebf5 data/rotv/loot_tables/blocks/flowering_void_leaves.json

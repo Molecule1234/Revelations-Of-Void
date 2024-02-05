@@ -1,9 +1,0 @@
-{
-  "name": "item.rotv.ancient_tome",
-  "landing_text": "ancient_tome.landing_text",
-  "version": "1",
-  "use_resource_pack": true,
-  "dont_generate_book": true,
-  "custom_book_item": "rotv:ancient_tome",
-  "book_texture": "rotv:textures/gui/book_background.png"
-}

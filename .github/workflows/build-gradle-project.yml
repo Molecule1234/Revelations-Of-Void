@@ -30,4 +30,4 @@ jobs:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         file: "./build/libs/rotv-1.0.0.7-1.20.1.jar"
-        message: "Send Multiple File."
+        message: ${{ github.event.head_commit.message }}

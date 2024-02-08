@@ -140,7 +140,7 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         progress = pTag.getInt("void_extractor.progress");
         fluidVoid = pTag.getInt("void_extractor.fluid_void");
         litTime = pTag.getInt("litTime");
-        litDuration = this.getBurnDuration(itemHandler.getStackInSlot(1));
+        litDuration = this.getBurnDuration(itemHandler.getStackInSlot(FUEL_SLOT));
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
@@ -154,11 +154,11 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
         if(hasRecipe()) {
 
             if (!this.isLit()) {
-                litTime = this.getBurnDuration(itemHandler.getStackInSlot(1));
+                litTime = this.getBurnDuration(itemHandler.getStackInSlot(FUEL_SLOT));
                 litDuration = this.litTime;
 
                 if (this.litTime > 0) {
-                    itemHandler.getStackInSlot(1).shrink(1);
+                    itemHandler.getStackInSlot(FUEL_SLOT).shrink(1);
                 }
 
             } else {

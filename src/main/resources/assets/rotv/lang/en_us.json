@@ -1,6 +1,12 @@
 {
+  "item.rotv.void_gem": "Void Gem",
+  "item.rotv.void_gem.tooltip_fluid": "Void: %1$s / %2$s",
+
 
   "block.rotv.alchemy_machine": "Alchemy Machine",
   "block.rotv.void_extractor": "Void Extractor",
-  "gui.void_extractor.void_fluid": "Void: %1$s / %2$s"
+
+
+  "gui.void_extractor.void_fluid": "Void: %1$s / %2$s",
+  "gui.alchemy_machine.void_fluid": "Void: %1$s / %2$s"
 }

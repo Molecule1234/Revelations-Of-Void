@@ -4,8 +4,11 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.scar.rotvmod.RotvMod;
@@ -26,3 +29,4 @@ public class ModEventBusClientEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.VOID_HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 }
+

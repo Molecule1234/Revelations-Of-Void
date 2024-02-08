@@ -47,6 +47,7 @@
   "block.rotv.flowering_void_leaves": "Цветущие пустотные листья",
 
   "item.rotv.void_gem": "Камень пустоты",
+  "item.rotv.void_gem.tooltip_fluid": "Пустота: %1$s / %2$s",
 
   "block.rotv.alchemy_machine": "Алхимическая печка",
   "block.rotv.void_extractor": "Пустотный экстрактор",
@@ -58,5 +59,6 @@
   "block.rotv.carved_imbued_stone": "Резной пропитанный камень",
   "block.rotv.polished_imbued_stone": "Полированный пропитанный камень",
 
-  "gui.void_extractor.void_fluid": "Пустота: %1$s / %2$s"
+  "gui.void_extractor.void_fluid": "Пустота: %1$s / %2$s",
+  "gui.alchemy_machine.void_fluid": "Пустота: %1$s / %2$s"
 }

@@ -111,6 +111,8 @@ public class RotvMod {
             event.accept(ModItems.RAW_OVERFLOWN_DEORIUM);
 
 
+            event.accept(ModItems.SCARLET_FLUX);
+            event.accept(ModItems.INFUSED_LEATHER);
             event.accept(ModItems.CLEAR_RUNE);
             event.accept(ModItems.VOID_TREE_BARK);
 

@@ -13,6 +13,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,14 +23,21 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.scar.rotvmod.RotvMod;
+import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
 import net.scar.rotvmod.inventory.screen.AlchemyMachineMenu;
+import net.scar.rotvmod.item.ChargedVoidItem;
+import net.scar.rotvmod.item.VoidGem;
+import net.scar.rotvmod.recipe.AlchemyMachineRecipe;
 import net.scar.rotvmod.registry.ModBlockEntities;
 import net.scar.rotvmod.registry.ModItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(8);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(9);
 
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
@@ -38,12 +47,17 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
     private static final int INPUT_SLOT_6 = 5;
     private static final int FUEL_SLOT = 6;
     private static final int OUTPUT_SLOT = 7;
+    private static final int CHARGE_SLOT = 8;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 78;
+    private int fluidVoid = 2000;
+    private int maxFluidVoid = 2000;
+    public int litTime = 0;
+    public int litDuration = 0;
 
     public AlchemyMachineBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ALCHEMY_FURNACE.get(), pPos, pBlockState);
@@ -53,6 +67,10 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
                 return switch (pIndex) {
                     case 0 -> AlchemyMachineBlockEntity.this.progress;
                     case 1 -> AlchemyMachineBlockEntity.this.maxProgress;
+                    case 2 -> AlchemyMachineBlockEntity.this.fluidVoid;
+                    case 3 -> AlchemyMachineBlockEntity.this.maxFluidVoid;
+                    case 4 -> AlchemyMachineBlockEntity.this.litTime;
+                    case 5 -> AlchemyMachineBlockEntity.this.litDuration;
                     default -> 0;
                 };
             }
@@ -62,12 +80,16 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
                 switch (pIndex) {
                     case 0 -> AlchemyMachineBlockEntity.this.progress = pValue;
                     case 1 -> AlchemyMachineBlockEntity.this.maxProgress = pValue;
+                    case 2 -> AlchemyMachineBlockEntity.this.fluidVoid = pValue;
+                    case 3 -> AlchemyMachineBlockEntity.this.maxFluidVoid = pValue;
+                    case 4 -> AlchemyMachineBlockEntity.this.litTime = pValue;
+                    case 5 -> AlchemyMachineBlockEntity.this.litDuration = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 6;
             }
         };
     }
@@ -116,7 +138,9 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("alchemy_furnace.progress", progress);
-
+        pTag.putInt("void_extractor.fluid_void", fluidVoid);
+        pTag.putInt("litTime", litTime);
+        pTag.putInt("litDuration", litDuration);
         super.saveAdditional(pTag);
     }
 
@@ -125,19 +149,55 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("alchemy_furnace.progress");
+        progress = pTag.getInt("void_extractor.progress");
+        fluidVoid = pTag.getInt("void_extractor.fluid_void");
+        litTime = pTag.getInt("litTime");
+        litDuration = this.getBurnDuration(itemHandler.getStackInSlot(FUEL_SLOT));
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(hasRecipe()) {
-            increaseCraftingProgress();
-            setChanged(pLevel, pPos, pState);
+        if (this.isLit()) {
+            --litTime;
+        } else if (progress > 0) {
+            --progress;
+        }
 
-            if(hasProgressFinished()) {
-                craftItem();
-                resetProgress();
+
+        ItemStack chargeStack = this.itemHandler.getStackInSlot(CHARGE_SLOT);
+
+        if (chargeStack.getItem() != Items.AIR && fluidVoid > 0) {
+            int voidCount = ChargedVoidItem.getFluidCount(chargeStack) + 1;
+            if (voidCount <= ChargedVoidItem.MAX_VOID_FLUID_COUNT) {
+                --fluidVoid;
+                chargeStack.setDamageValue(ChargedVoidItem.MAX_VOID_FLUID_COUNT - voidCount);
+                itemHandler.setStackInSlot(CHARGE_SLOT, ChargedVoidItem.setFluidCount(chargeStack, voidCount));
+            }
+        }
+
+        if(hasRecipe()) {
+
+            if (!this.isLit()) {
+                litTime = this.getBurnDuration(itemHandler.getStackInSlot(FUEL_SLOT));
+                litDuration = this.litTime;
+
+                if (this.litTime > 0) {
+                    itemHandler.getStackInSlot(FUEL_SLOT).shrink(1);
+                }
+
+            } else {
+                if (this.litTime > 0) {
+                    increaseCraftingProgress();
+
+                    if (hasProgressFinished()) {
+                        craftItem();
+                        resetProgress();
+                        setChanged(pLevel, pPos, pState);
+                    }
+                }
             }
         } else {
             resetProgress();
+            setChanged(pLevel, pPos, pState);
         }
     }
 
@@ -145,20 +205,52 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
         progress = 0;
     }
 
-    private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.INGOT_ALTURIUM.get(), 1);
-        this.itemHandler.extractItem(INPUT_SLOT_1, 1, false);
 
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+    private void craftItem() {
+        Optional<AlchemyMachineRecipe> recipe = getCurrentRecipe();
+        ItemStack resultItem = recipe.get().getResultItem(getLevel().registryAccess());
+        int voidFluid = recipe.get().getVoidFluid();
+
+        if (voidFluid > 0) { this.fluidVoid -= voidFluid; }
+        this.itemHandler.extractItem(INPUT_SLOT_1, 1, false);
+        this.itemHandler.extractItem(INPUT_SLOT_2, 1, false);
+        this.itemHandler.extractItem(INPUT_SLOT_3, 1, false);
+        this.itemHandler.extractItem(INPUT_SLOT_4, 1, false);
+        this.itemHandler.extractItem(INPUT_SLOT_5, 1, false);
+        this.itemHandler.extractItem(INPUT_SLOT_6, 1, false);
+
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(resultItem.getItem(),
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + resultItem.getCount()));
+
+    }
+
+    private Optional<AlchemyMachineRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        for(int i = 0; i < this.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
+        }
+
+        return this.level.getRecipeManager().getRecipeFor(AlchemyMachineRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT_1).getItem() == ModItems.RAW_ALTURIUM.get();
-        ItemStack result = new ItemStack(ModItems.INGOT_ALTURIUM.get());
+        Optional<AlchemyMachineRecipe> recipe = getCurrentRecipe();
 
-        return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        if (recipe.isEmpty()) {
+            return false;
+        }
+
+        ItemStack resultItem = recipe.get().getResultItem(getLevel().registryAccess());
+        int voidFluid = recipe.get().getVoidFluid();
+        return canInsertAmountIntoOutputSlot(resultItem.getCount())
+                && canInsertItemIntoOutputSlot(resultItem.getItem()) && hasVoidFluid(voidFluid);
+
     }
+
+    private boolean hasVoidFluid(int voidFluidReq) {
+        return voidFluidReq >= this.fluidVoid;
+    }
+
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() || this.itemHandler.getStackInSlot(OUTPUT_SLOT).is(item);
@@ -174,5 +266,22 @@ public class AlchemyMachineBlockEntity extends BlockEntity implements MenuProvid
 
     private void increaseCraftingProgress() {
         progress++;
+    }
+
+    public boolean isFuel(ItemStack pStack) {
+        return net.minecraftforge.common.ForgeHooks.getBurnTime(pStack, RecipeType.SMELTING) > 0;
+    }
+
+    public int getBurnDuration(ItemStack pFuel) {
+        if (pFuel.isEmpty()) {
+            return 0;
+        } else {
+            Item item = pFuel.getItem();
+            return net.minecraftforge.common.ForgeHooks.getBurnTime(pFuel, RecipeType.SMELTING);
+        }
+    }
+
+    public boolean isLit() {
+        return this.litTime > 0;
     }
 }

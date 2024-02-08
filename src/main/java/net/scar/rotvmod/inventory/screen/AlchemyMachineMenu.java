@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import net.scar.rotvmod.inventory.slots.ChargeSlot;
 import net.scar.rotvmod.registry.ModBlocks;
 import net.scar.rotvmod.block.entity.alchemy.AlchemyMachineBlockEntity;
 import net.scar.rotvmod.inventory.slots.AlchemyFuelSlot;
@@ -22,12 +23,12 @@ public class AlchemyMachineMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public AlchemyMachineMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(8));
     }
 
     public AlchemyMachineMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.ALCHEMY_FURNACE_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
+        checkContainerSize(inv, 8);
         blockEntity = ((AlchemyMachineBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -37,20 +38,21 @@ public class AlchemyMachineMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
             // 1 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 53, 18));
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 53, 19));
             // 2 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 71, 18));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 71, 19));
             // 3 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 89, 18));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 89, 19));
             // 4 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 3, 53, 36));
+            this.addSlot(new SlotItemHandler(iItemHandler, 3, 53, 37));
             // 5 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 4, 71, 36));
+            this.addSlot(new SlotItemHandler(iItemHandler, 4, 71, 37));
             // 6 слот
-            this.addSlot(new SlotItemHandler(iItemHandler, 5, 89, 36));
+            this.addSlot(new SlotItemHandler(iItemHandler, 5, 89, 37));
 
-            this.addSlot(new AlchemyFuelSlot(this, iItemHandler, 6, 53, 57));
-            this.addSlot(new ResultSlot(iItemHandler, 7, 132, 27));
+            this.addSlot(new AlchemyFuelSlot(this, iItemHandler, 6, 53, 58));
+            this.addSlot(new ResultSlot(iItemHandler, 7, 131, 27));
+            this.addSlot(new ChargeSlot(iItemHandler, 8, 89, 58));
         });
 
         addDataSlots(data);
@@ -60,12 +62,31 @@ public class AlchemyMachineMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+    public int getLitProgress() {
+        int i = this.data.get(5);
+        if (i == 0) {
+            i = 200;
+        }
+
+        return this.data.get(4) * 13 / i;
+    }
+
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int progressArrowSize = 16; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+
+    public int getVoidFluid() {
+        int voidFluid = this.data.get(2);
+        return voidFluid;
+    }
+
+    public int getMaxVoidFluid() {
+        int maxVoidFluid = this.data.get(3);
+        return maxVoidFluid;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

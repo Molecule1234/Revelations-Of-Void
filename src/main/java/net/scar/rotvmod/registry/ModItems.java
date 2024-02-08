@@ -7,9 +7,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.scar.rotvmod.RotvMod;
 import net.minecraft.world.item.*;
 import net.scar.rotvmod.entity.ModBoatEntity;
-import net.scar.rotvmod.item.AlchemistAlmanac;
-import net.scar.rotvmod.item.ModBoatItem;
-import net.scar.rotvmod.item.VoidGem;
+import net.scar.rotvmod.item.*;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -28,8 +26,12 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> VOID_GEM = ITEMS.register("void_gem",
-            () -> new VoidGem(new Item.Properties()));
+            () -> new VoidGem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(ChargedVoidItem.MAX_VOID_FLUID_COUNT).defaultDurability(0)));
 
+    public static final RegistryObject<Item> SCARLET_FLUX = ITEMS.register("scarlet_flux",
+            () -> new ScarletFlux(new Item.Properties()));
+    public static final RegistryObject<Item> INFUSED_LEATHER = ITEMS.register("infused_leather",
+            () -> new Item(new Item.Properties()));
 
     // Ingots
     public static final RegistryObject<Item> INGOT_ALTURIUM = ITEMS.register("ingot_alturium",

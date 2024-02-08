@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-05T19:15:53.021839	Item Models: rotv
+// 1.20.1	2024-02-08T15:34:43.0659955	Item Models: rotv
 ac995f95cf030726ba3c7b23447b43e49112e651 assets/rotv/models/item/alchemist_almanac.json
 90fee88ded1fa0e59ce9f767ba1a8c34d9f218c3 assets/rotv/models/item/aurora_music_disc.json
 f318bda0768cde2e78589547a8039820a9fc0688 assets/rotv/models/item/calm_music_disc.json
@@ -14,6 +14,7 @@ adb2d11f20edd26da043bcd3fb267eaf86e6ef1f assets/rotv/models/item/imbued_stone_br
 ed3e23164f0a83e0fa3f630941b949d2b53b79bc assets/rotv/models/item/imbued_stone_slab.json
 c9ffc3e924ee81b599e7ebb122fb261f65e4ea51 assets/rotv/models/item/imbued_stone_stairs.json
 fe4d4db1e0eaedbb42e261348369191b5fe9d10f assets/rotv/models/item/imbued_stone_wall.json
+20b15e30cdf0b7aa880397f1fb0e2fadab9e5fb5 assets/rotv/models/item/infused_leather.json
 6f7bb032cc40b07cc39c6503f59c8b38f2aaa80a assets/rotv/models/item/ingot_alturium.json
 3c4f20ad301998161d4e788cae93dc8976b8ec13 assets/rotv/models/item/ingot_deorium.json
 4797da3cf15a1b3a19083aefe4870f509143c9c4 assets/rotv/models/item/ingot_overflown_deorium.json
@@ -29,6 +30,7 @@ e0c5656355103acff75d3f1e2bf839fb274f0cf0 assets/rotv/models/item/polished_imbued
 22ae594554fa5f2cb3c79311da38f59f60955f6f assets/rotv/models/item/raw_deorium.json
 62b980f4897c3d424ca8dd039cf381c47369558f assets/rotv/models/item/raw_overflown_deorium.json
 73c886290ce66a34cc6ee076ff7c9bceb38ef5a1 assets/rotv/models/item/revelations_music_disc.json
+f5956a3df1544d6901fe47a4cc926c8ae094d365 assets/rotv/models/item/scarlet_flux.json
 f46175f416cdfaea06af4a8873543decf0407ee2 assets/rotv/models/item/void_boat.json
 0670d35668debf80a39190fb5468cd166458211a assets/rotv/models/item/void_button.json
 8b72a688f050a119c7fc78af9c7767d29aea6ab7 assets/rotv/models/item/void_chest_boat.json

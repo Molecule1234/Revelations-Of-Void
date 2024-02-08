@@ -25,6 +25,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.VOID_FLOWER_PETAL);
 
         simpleItem(ModItems.VOID_GEM);
+        simpleItem(ModItems.SCARLET_FLUX);
+        simpleItem(ModItems.INFUSED_LEATHER);
 
         // Discs
         simpleItem(ModItems.AURORA_MUSIC_DISC);

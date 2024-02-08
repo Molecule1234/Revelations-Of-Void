@@ -1,0 +1,28 @@
+{
+  "type": "rotv:alchemy_machine",
+  "void": 0,
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:air"
+    },
+    {
+      "item": "minecraft:air"
+    }
+  ],
+  "output": {
+    "item": "rotv:imbued_stone",
+    "count": 1
+  }
+}

@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,6 +25,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.scar.rotvmod.block.custom.extractor.VoidExtractorBlock;
 import net.scar.rotvmod.inventory.screen.VoidExtractorMenu;
+import net.scar.rotvmod.item.ChargedVoidItem;
 import net.scar.rotvmod.registry.ModBlockEntities;
 import net.scar.rotvmod.recipe.VoidExtractorRecipe;
 import org.jetbrains.annotations.NotNull;
@@ -32,11 +34,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(4);
 
     private static final int INPUT_SLOT = 0;
     private static final int FUEL_SLOT = 1;
     private static final int OUTPUT_SLOT = 2;
+    private static final int CHARGE_SLOT = 3;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -150,6 +153,17 @@ public class VoidExtractorBlockEntity extends BlockEntity implements MenuProvide
             --progress;
         }
 
+        ItemStack chargeStack = this.itemHandler.getStackInSlot(CHARGE_SLOT);
+
+        if (chargeStack.getItem() != Items.AIR) {
+            int voidCount = ChargedVoidItem.getFluidCount(chargeStack);
+            if (voidCount > 0 && this.fluidVoid < this.maxFluidVoid) {
+                ++fluidVoid;
+                voidCount -= 1;
+                chargeStack.setDamageValue(ChargedVoidItem.MAX_VOID_FLUID_COUNT - voidCount);
+                itemHandler.setStackInSlot(CHARGE_SLOT, ChargedVoidItem.setFluidCount(chargeStack, voidCount));
+            }
+        }
 
         if(hasRecipe()) {
 

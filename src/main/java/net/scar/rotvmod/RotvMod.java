@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.scar.rotvmod.inventory.screen.AlmanacScreen;
 import net.scar.rotvmod.registry.ModBlocks;
 import net.scar.rotvmod.client.renders.ModBoatRenderer;
 import net.scar.rotvmod.datagen.tree.ModFoliagePlacers;
@@ -29,8 +30,12 @@ import net.scar.rotvmod.inventory.screen.VoidExtractorScreen;
 import net.scar.rotvmod.registry.ModMenuTypes;
 import net.scar.rotvmod.registry.ModSounds;
 import net.scar.rotvmod.registry.ModWoodTypes;
+import net.scar.rotvmod.utils.CategoryAlmanac;
 import org.slf4j.Logger;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(RotvMod.MOD_ID)
 public class RotvMod {

@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import net.scar.rotvmod.inventory.slots.ChargeSlot;
 import net.scar.rotvmod.registry.ModBlocks;
 import net.scar.rotvmod.block.entity.extractor.VoidExtractorBlockEntity;
 import net.scar.rotvmod.inventory.slots.ExtractorFuelSlot;
@@ -39,6 +40,7 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 16));
             this.addSlot(new ExtractorFuelSlot(this, iItemHandler, 1, 56, 49));
             this.addSlot(new ResultSlot(iItemHandler, 2, 104, 32));
+            this.addSlot(new ChargeSlot(iItemHandler, 3, 105, 57));
         });
 
         addDataSlots(data);
@@ -91,7 +93,7 @@ public class VoidExtractorMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

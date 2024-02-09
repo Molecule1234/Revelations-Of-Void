@@ -185,8 +185,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli-xplat:1.20.1-84")
-    implementation fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
+    // compileOnly fg.deobf("vazkii.patchouli:Patchouli-xplat:1.20.1-84")
+    // implementation fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

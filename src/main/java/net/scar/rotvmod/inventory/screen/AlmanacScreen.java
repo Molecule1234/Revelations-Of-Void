@@ -11,6 +11,8 @@ import net.scar.rotvmod.registry.Almanac;
 import net.scar.rotvmod.utils.CategoryAlmanac;
 import net.scar.rotvmod.utils.ChapterAlmanac;
 
+import java.util.List;
+
 public class AlmanacScreen extends Screen {
     private static final ResourceLocation INDEX_PAGE =
             new ResourceLocation(RotvMod.MOD_ID, "textures/gui/almanac/index_page.png");
@@ -23,6 +25,7 @@ public class AlmanacScreen extends Screen {
     protected int pageRightWidth = 160 - 7;
 
     private String location = "index";
+    private final CategoryAlmanac openCategory = Almanac.CATEGORY_1;
 
     public AlmanacScreen() {
         super(Component.translatable("gui.rotv.almanac.title"));
@@ -51,7 +54,7 @@ public class AlmanacScreen extends Screen {
         // добавление второго слоя, в виде фона страниц
         guiGraphics.blit(INDEX_PAGE, x + 16, y - 2, 16, 0, 279, 172, 512, 512);
 
-        renderVoidFlower(guiGraphics, x + pageRightWidth + 12, y + 8);
+        // renderVoidFlower(guiGraphics, x + pageRightWidth + 12, y + 8);
 
         if (location.equals("index")) {
             renderIndex(guiGraphics, x, y);
@@ -66,14 +69,25 @@ public class AlmanacScreen extends Screen {
     }
 
     public void renderChapters(GuiGraphics guiGraphics, int pX, int pY) {
-        for (int i = 0; i < Almanac.CHAPTERS.size(); i++) {
-            ChapterAlmanac chapter = Almanac.CHAPTERS.get(i);
+        int addedCount = 0;
+        int pageWidth = pageLeftWidth;
+        List<ChapterAlmanac> chapters = this.openCategory.getChapters();
 
-            guiGraphics.blit(INDEX_PAGE, pX + pageLeftWidth + 16, pY + 40, 369, 16, 20, 20, 512, 512);
-            guiGraphics.renderFakeItem(chapter.icon, pX + pageLeftWidth + 18, pY + 43);
-            guiGraphics.renderItemDecorations(this.font, chapter.icon, pX + pageLeftWidth + 18, pY + 43, null);
+        for (ChapterAlmanac chapter : chapters) {
 
-            guiGraphics.drawString(this.font, Component.literal(chapter.key), pX + pageLeftWidth + 40, pY + 46, 0x000000, false);
+            if ((addedCount + 1) > 5) {
+                pageWidth = pageRightWidth;
+                addedCount = -1;
+            }
+
+            guiGraphics.blit(INDEX_PAGE, pX + pageWidth + 16, pY + 40 + (22 * addedCount), 369, 16, 20, 20, 512, 512);
+            guiGraphics.renderFakeItem(chapter.getIcon(), pX + pageWidth + 18, pY + 43 + (22 * addedCount));
+            guiGraphics.renderItemDecorations(this.font, chapter.getIcon(), pX + pageWidth + 18, pY + 43 + (22 * addedCount), null);
+
+            guiGraphics.drawString(this.font, Component.literal(chapter.getName()), pX + pageWidth + 38, pY + 48 + (22 * addedCount), 0x000000, false);
+            guiGraphics.blit(INDEX_PAGE, pX + pageWidth + 36, pY + 56 + (22 * addedCount), 7, 359, 98, 4, 512, 512);
+
+            ++addedCount;
         }
     }
 
@@ -81,16 +95,16 @@ public class AlmanacScreen extends Screen {
         for (int i = 0; i < Almanac.CATEGORIES.size(); i++) {
             CategoryAlmanac category = Almanac.CATEGORIES.get(i);
             guiGraphics.blit(INDEX_PAGE, pX - 21, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
-            guiGraphics.renderFakeItem(category.icon, pX - 9, pY + 12 + (i * 21));
-            guiGraphics.renderItemDecorations(this.font, category.icon, pX - 9, pY + 12 + (i * 21), null);
+            guiGraphics.renderFakeItem(category.getIcon(), pX - 9, pY + 12 + (i * 21));
+            guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9, pY + 12 + (i * 21), null);
         }
     }
 
     public void renderIndex(GuiGraphics guiGraphics, int pX, int pY) {
-        guiGraphics.drawString(this.font, Component.literal("Chapter name"), pX + pageLeftWidth + 40, pY + 16, 0x000000, false);
-        guiGraphics.drawWordWrap(this.font, Component.literal("Vestibulum non sapien in mi facilisis pharetra. In id hendrerit magna, sed fringilla tellus. Sed nibh nibh, aliquet sit amet nisl sed, ornare placerat eros. Praesent elementum erat at placerat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit mattis tempus."), pX + pageLeftWidth + 12, pY + 26, 128, 0x000000);
-        // guiGraphics.blit(INDEX_PAGE, x + pageLeftWidth + 14, y + 34, 7, 356, 111, 20, 512, 512);
-        //renderChapters(guiGraphics, pX, pY);
+        guiGraphics.drawString(this.font, Component.literal(this.openCategory.getName()), pX + pageLeftWidth + 40, pY + 16, 0x000000, false);
+        //guiGraphics.drawWordWrap(this.font, Component.literal("Vestibulum non sapien in mi facilisis pharetra. In id hendrerit magna, sed fringilla tellus. Sed nibh nibh, aliquet sit amet nisl sed, ornare placerat eros. Praesent elementum erat at placerat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit mattis tempus."), pX + pageLeftWidth + 12, pY + 26, 128, 0x000000);
+        guiGraphics.blit(INDEX_PAGE, pX + pageLeftWidth + 14, pY + 26, 7, 364, 111, 6, 512, 512);
+        renderChapters(guiGraphics, pX, pY);
     }
 
     public void renderVoidFlower(GuiGraphics guiGraphics, int pX, int pY) {

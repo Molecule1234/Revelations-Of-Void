@@ -5,13 +5,12 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAlmanac extends AlmanacElement {
+public class CategoryAlmanac {
     private final String name;
     private final List<ChapterAlmanac> chapters;
     private final ItemStack icon;
 
-    public CategoryAlmanac(String name, ItemStack icon, int x, int y, int height, int width) {
-        super(x, y, height, width);
+    public CategoryAlmanac(String name, ItemStack icon) {
         this.name = name;
         this.icon = icon;
         this.chapters = new ArrayList<>();

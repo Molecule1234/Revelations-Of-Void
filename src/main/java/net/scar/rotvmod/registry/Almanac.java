@@ -2,9 +2,9 @@ package net.scar.rotvmod.registry;
 
 import net.minecraft.world.item.Item;
 import net.scar.rotvmod.RotvMod;
+import net.scar.rotvmod.utils.ButtonAlmanac;
 import net.scar.rotvmod.utils.CategoryAlmanac;
 import net.scar.rotvmod.utils.ChapterAlmanac;
-import net.scar.rotvmod.utils.PageAlmanac;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ public class Almanac {
     public static List<CategoryAlmanac> CATEGORIES = new ArrayList<>();
 
     // Categories
-    public static final CategoryAlmanac CATEGORY_1 = registerCategory("Chapter Name", ModItems.VOID_GEM.get());
-    public static final CategoryAlmanac CATEGORY_2 = registerCategory("category_2", ModItems.RAW_DEORIUM.get());
-    public static final CategoryAlmanac CATEGORY_3 = registerCategory("category_3", ModItems.SCARLET_FLUX.get());
+    public static final CategoryAlmanac CATEGORY_1 = registerCategory("Category Name 1", ModItems.VOID_GEM.get());
+    public static final CategoryAlmanac CATEGORY_2 = registerCategory("Category Name 2", ModItems.RAW_DEORIUM.get());
+    public static final CategoryAlmanac CATEGORY_3 = registerCategory("Category Name 3", ModItems.SCARLET_FLUX.get());
 
 
     // Chapters
@@ -33,6 +33,9 @@ public class Almanac {
     public static final ChapterAlmanac TEST_8 = addChapter(CATEGORY_1, "Runes", ModItems.NUGGET_ALTURIUM.get());
     public static final ChapterAlmanac TEST_9 = addChapter(CATEGORY_1, "Runes", ModItems.ALCHEMIST_ALMANAC.get());
 
+    public static final ButtonAlmanac BUTTON_NEXT = new ButtonAlmanac("next");
+    public static final ButtonAlmanac BUTTON_PREV = new ButtonAlmanac("prev");
+
 
     private static CategoryAlmanac registerCategory(String name, Item item) {
         CategoryAlmanac category = new CategoryAlmanac(name, item.getDefaultInstance());
@@ -46,14 +49,18 @@ public class Almanac {
             return null;
         }
 
-        if (category.getChapters().size() < 11) {
-            ChapterAlmanac chapter = new ChapterAlmanac(name, item.getDefaultInstance());
-            category.addChapter(chapter);
-            return chapter;
-        } else {
-            RotvMod.LOGGER.error("Not registry chapter name " + name + " Reason: max category chapter 11 count.");
-            return null;
-        }
+        ChapterAlmanac chapter = new ChapterAlmanac(name, item.getDefaultInstance());
+        category.addChapter(chapter);
+        return chapter;
+
+        // if (category.getChapters().size() < 11) {
+        //    ChapterAlmanac chapter = new ChapterAlmanac(name, item.getDefaultInstance());
+        //    category.addChapter(chapter);
+        //    return chapter;
+        //} else {
+        //    RotvMod.LOGGER.error("Not registry chapter name " + name + " Reason: max category chapter 11 count.");
+        //    return null;
+        //}
     }
 
 }

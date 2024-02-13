@@ -31,4 +31,38 @@ public class CategoryAlmanac {
     public List<ChapterAlmanac> getChapters() {
         return chapters;
     }
+
+
+    public List<ChapterAlmanac> getChaptersPage(int pageNumber) {
+        List<ChapterAlmanac> result = new ArrayList<>();
+
+        // Максимальное количество глав на странице (для левой и правой части)
+        int maxChaptersPerPage = 12;
+
+        // Количество глав на первой странице левой части
+        int firstPageLeftChapters = 5;
+
+        int totalLeftChapters = chapters.size() - firstPageLeftChapters;
+        int totalPages = (int) Math.ceil((double) totalLeftChapters / 6) + 1;
+
+        // Проверка на допустимость номера страницы
+        if (pageNumber < 1 || pageNumber > totalPages) {
+            return result;
+        }
+
+        // Если это первая страница и левая часть
+        if (pageNumber == 1) {
+            for (int i = 0; i < firstPageLeftChapters && i < chapters.size(); i++) {
+                result.add(chapters.get(i));
+            }
+        } else {
+            int startIndex = (pageNumber - 2) * 6 + firstPageLeftChapters;
+            int endIndex = Math.min(startIndex + 6, chapters.size());
+            for (int i = startIndex; i < endIndex; i++) {
+                result.add(chapters.get(i));
+            }
+        }
+
+        return result;
+    }
 }

@@ -1,14 +1,14 @@
 package net.scar.rotvmod.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PageAlmanac {
-    public List<ChapterAlmanac> chapters = new ArrayList<>();
-    public CategoryAlmanac category;
+    public String title;
+    public String description;
+    public String type;
 
-    public PageAlmanac(CategoryAlmanac category) {
-        this.category = category;
+    public PageAlmanac(String title, String description, String type) {
+        this.title = title;
+        this.description = description;
+        this.type = type;
     }
 
 }

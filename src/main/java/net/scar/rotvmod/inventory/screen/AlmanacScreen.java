@@ -4,15 +4,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.BookViewScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.registry.Almanac;
-import net.scar.rotvmod.utils.ButtonAlmanac;
-import net.scar.rotvmod.utils.CategoryAlmanac;
-import net.scar.rotvmod.utils.ChapterAlmanac;
-import net.scar.rotvmod.utils.SpatialIndex;
+import net.scar.rotvmod.utils.*;
 
 import java.util.List;
 
@@ -29,6 +27,7 @@ public class AlmanacScreen extends Screen {
 
     private String location = "index";
     private CategoryAlmanac openCategory = Almanac.CATEGORY_1;
+    private ChapterAlmanac openChapter = null;
     private int pageIndex = 1;
     private final SpatialIndex spatialIndex = new SpatialIndex(10000, 10000);
 
@@ -47,6 +46,9 @@ public class AlmanacScreen extends Screen {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, INDEX_PAGE);
 
+        guiGraphics.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.ScreenEvent.BackgroundRendered(this, guiGraphics));
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
@@ -64,8 +66,14 @@ public class AlmanacScreen extends Screen {
         // renderVoidFlower(guiGraphics, x + pageRightWidth + 12, y + 8);
 
         if (location.equals("index")) {
-            renderIndex(guiGraphics, x, y);
+            if (this.pageIndex == 1) {
+                guiGraphics.drawString(this.font, Component.literal(this.openCategory.getName()), x + pageLeftWidth + 40, y + 16, 0x000000, false);
+                //guiGraphics.drawWordWrap(this.font, Component.literal("Vestibulum non sapien in mi facilisis pharetra. In id hendrerit magna, sed fringilla tellus. Sed nibh nibh, aliquet sit amet nisl sed, ornare placerat eros. Praesent elementum erat at placerat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit mattis tempus."), pX + pageLeftWidth + 12, pY + 26, 128, 0x000000);
+                guiGraphics.blit(INDEX_PAGE, x + pageLeftWidth + 14, y + 26, 7, 364, 111, 6, 512, 512);
+            }
+            renderChapters(guiGraphics, x, y);
         } else if (location.equals("chapter")) {
+            renderDescriptionChapters(guiGraphics, x, y);
         }
 
         renderTooltip(guiGraphics, mouseX, mouseY);
@@ -79,25 +87,43 @@ public class AlmanacScreen extends Screen {
         if (!foundItems.isEmpty()) {
             for (Object item : foundItems) {
                 if (item instanceof CategoryAlmanac category) {
+                    this.location = "index";
                     this.openCategory = category;
                     this.pageIndex = 1;
-                    spatialIndex.clearChapterAlmanacs();
-                    RotvMod.LOGGER.info("Category " + category.getName() + " pressed");
-                    return true;
-                } else if (item instanceof ChapterAlmanac chapter) {
-                    RotvMod.LOGGER.info("Chapter " + chapter.getName() + " pressed");
-                    return true;
-                } else if (item instanceof ButtonAlmanac button) {
-                    boolean hasNextEmptyPages = hasNextEmptyPages(pageIndex + 1, this.openCategory.getChapters());
 
-                    if (button.getType().equals("prev") && this.pageIndex != 1) {
-                        pageIndex -= 2;
+                    spatialIndex.clearChapterAlmanacs();
+
+                    return true;
+
+                } else if (item instanceof ChapterAlmanac chapter) {
+                    if (chapter.getPages().size() > 1) {
+                        this.location = "chapter";
+                        this.pageIndex = 1;
+                        this.openChapter = chapter;
+
                         spatialIndex.clearChapterAlmanacs();
-                    } else if (button.getType().equals("next") && !hasNextEmptyPages) {
-                        pageIndex += 2;
-                        spatialIndex.clearChapterAlmanacs();
+
+                        return true;
                     }
-                    RotvMod.LOGGER.info("Button " + button.getType() + " pressed");
+                } else if (item instanceof ButtonAlmanac button) {
+                    if (this.location.equals("index")) {
+                        boolean hasNextEmptyPages = hasNextEmptyPages(pageIndex + 1, this.openCategory.getChapters());
+
+                        if (button.getType().equals("prev") && this.pageIndex != 1) {
+                            this.pageIndex -= 2;
+                            spatialIndex.clearChapterAlmanacs();
+                        } else if (button.getType().equals("next") && !hasNextEmptyPages) {
+                            this.pageIndex += 2;
+                            spatialIndex.clearChapterAlmanacs();
+                        }
+                    } else if (this.location.equals("chapter")) {
+                        if (button.getType().equals("prev") && this.pageIndex != 1) {
+                            this.pageIndex -= 2;
+                        } else if (button.getType().equals("next") && (this.pageIndex + 2) <= this.openChapter.getPages().size()) {
+                            this.pageIndex += 2;
+                        }
+                    }
+
                     return true;
                 }
             }
@@ -117,10 +143,29 @@ public class AlmanacScreen extends Screen {
                             : Component.literal("This category open");
                     guiGraphics.renderTooltip(this.font, text, pX, pY);
                 } else if (item instanceof ChapterAlmanac chapter) {
-                    guiGraphics.renderTooltip(this.font, Component.literal("Click to open chapter"), pX, pY);
+                    Component text = chapter.getPages().size() < 1
+                            ? Component.literal("Chapter is empty")
+                            : Component.literal("Click to open chapter");
+                    guiGraphics.renderTooltip(this.font, text, pX, pY);
                 } else if (item instanceof ButtonAlmanac button) {
                     if (button.getType().equals("prev") || button.getType().equals("next")) {
-                        guiGraphics.renderTooltip(this.font, Component.literal("Click to go to " + button.getType() + " page."), pX, pY);
+                        if (this.location.equals("index")) {
+                            boolean hasNextEmptyPages = hasNextEmptyPages(pageIndex + 1, this.openCategory.getChapters());
+                            Component text = !hasNextEmptyPages
+                                    ? Component.literal("Click to go to " + button.getType() + " page.")
+                                    : Component.literal("There are no more pages");
+                            guiGraphics.renderTooltip(this.font, text, pX, pY);
+                        } else if (this.location.equals("chapter")) {
+                            int index = button.getType().equals("next") ? this.pageIndex + 2 : this.pageIndex - 2;
+
+                            if (index <= 0 || index > this.openChapter.getPages().size()) {
+                                // Индекс выходит за пределы диапазона страниц
+                                guiGraphics.renderTooltip(this.font, Component.literal("There are no more pages"), pX, pY);
+                            } else {
+                                // Индекс находится в допустимом диапазоне
+                                guiGraphics.renderTooltip(this.font, Component.literal("Click to go to " + button.getType() + " page."), pX, pY);
+                            }
+                        }
                     }
                 }
             }
@@ -135,18 +180,32 @@ public class AlmanacScreen extends Screen {
         int addedCount = this.pageIndex == 1 ? 0 : -1;
 
         for (ChapterAlmanac chapter : chaptersOnFirstPage) {
-            renderChapter(guiGraphics, pX, pY, pageLeftWidth, chapter, addedCount);
+            renderChaptersButton(guiGraphics, pX, pY, pageLeftWidth, chapter, addedCount);
             ++addedCount;
         }
 
         addedCount = -1;
         for (ChapterAlmanac chapter : chaptersOnSecondPage) {
-            renderChapter(guiGraphics, pX, pY, pageRightWidth, chapter, addedCount);
+            renderChaptersButton(guiGraphics, pX, pY, pageRightWidth, chapter, addedCount);
             ++addedCount;
         }
     }
 
-    public void renderChapter(GuiGraphics guiGraphics, int pX, int pY, int pageWidth, ChapterAlmanac chapter, int addedCount) {
+    public void renderDescriptionChapters(GuiGraphics guiGraphics, int pX, int pY) {
+        if (this.pageIndex - 1 >= 0 && this.pageIndex - 1 < this.openChapter.getPages().size()) {
+            PageAlmanac pageOnFirstPage = this.openChapter.getPages().get(this.pageIndex - 1);
+            renderChapterPage(guiGraphics, pX, pY, pageLeftWidth, pageOnFirstPage);
+        }
+
+        if (this.pageIndex >= 0 && this.pageIndex < this.openChapter.getPages().size()) {
+            PageAlmanac pageOnSecondPage = this.openChapter.getPages().get(this.pageIndex);
+            renderChapterPage(guiGraphics, pX, pY, pageRightWidth, pageOnSecondPage);
+        }
+
+
+    }
+
+    public void renderChaptersButton(GuiGraphics guiGraphics, int pX, int pY, int pageWidth, ChapterAlmanac chapter, int addedCount) {
         guiGraphics.blit(INDEX_PAGE, pX + pageWidth + 16, pY + 40 + (22 * addedCount), 369, 16, 20, 20, 512, 512);
         guiGraphics.renderFakeItem(chapter.getIcon(), pX + pageWidth + 18, pY + 43 + (22 * addedCount));
         guiGraphics.renderItemDecorations(this.font, chapter.getIcon(), pX + pageWidth + 18, pY + 43 + (22 * addedCount), null);
@@ -155,6 +214,15 @@ public class AlmanacScreen extends Screen {
         guiGraphics.blit(INDEX_PAGE, pX + pageWidth + 36, pY + 56 + (22 * addedCount), 7, 359, 98, 4, 512, 512);
 
         spatialIndex.add(chapter, pX + pageWidth + 38, pY + 48 + (22 * addedCount), this.font.width(chapter.getName()), this.font.lineHeight);
+    }
+
+    public void renderChapterPage(GuiGraphics guiGraphics, int pX, int pY, int pageWidth, PageAlmanac page) {
+        if (page.type.equals("text")) {
+            guiGraphics.drawString(this.font, Component.literal(page.title), pX + pageWidth + 40, pY + 16, 0x000000, false);
+            guiGraphics.blit(INDEX_PAGE, pX + pageWidth + 14, pY + 26, 7, 364, 111, 6, 512, 512);
+            guiGraphics.drawWordWrap(this.font, Component.literal(page.description), pX + pageWidth + 12, pY + 36, 128, 0x000000);
+        }
+
     }
 
     public void renderButtons(GuiGraphics guiGraphics, int pX, int pY) {
@@ -174,15 +242,6 @@ public class AlmanacScreen extends Screen {
 
             spatialIndex.add(category, pX - 21, pY + 12 + (i * 21), 37, 18);
         }
-    }
-
-    public void renderIndex(GuiGraphics guiGraphics, int pX, int pY) {
-        if (this.pageIndex == 1) {
-            guiGraphics.drawString(this.font, Component.literal(this.openCategory.getName()), pX + pageLeftWidth + 40, pY + 16, 0x000000, false);
-            //guiGraphics.drawWordWrap(this.font, Component.literal("Vestibulum non sapien in mi facilisis pharetra. In id hendrerit magna, sed fringilla tellus. Sed nibh nibh, aliquet sit amet nisl sed, ornare placerat eros. Praesent elementum erat at placerat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit mattis tempus."), pX + pageLeftWidth + 12, pY + 26, 128, 0x000000);
-            guiGraphics.blit(INDEX_PAGE, pX + pageLeftWidth + 14, pY + 26, 7, 364, 111, 6, 512, 512);
-        }
-        renderChapters(guiGraphics, pX, pY);
     }
 
     public void renderVoidFlower(GuiGraphics guiGraphics, int pX, int pY) {

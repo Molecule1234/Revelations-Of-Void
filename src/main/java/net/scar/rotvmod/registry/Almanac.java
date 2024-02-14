@@ -5,6 +5,7 @@ import net.scar.rotvmod.RotvMod;
 import net.scar.rotvmod.utils.ButtonAlmanac;
 import net.scar.rotvmod.utils.CategoryAlmanac;
 import net.scar.rotvmod.utils.ChapterAlmanac;
+import net.scar.rotvmod.utils.PageAlmanac;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,6 @@ public class Almanac {
     public static final ButtonAlmanac BUTTON_NEXT = new ButtonAlmanac("next");
     public static final ButtonAlmanac BUTTON_PREV = new ButtonAlmanac("prev");
 
-
     private static CategoryAlmanac registerCategory(String name, Item item) {
         CategoryAlmanac category = new CategoryAlmanac(name, item.getDefaultInstance());
         CATEGORIES.add(category);
@@ -83,5 +83,10 @@ public class Almanac {
         return chapter;
 
     }
+
+
+    public static final PageAlmanac TEST_242423425 = VOID_LOTUS.addPage(new PageAlmanac("Title Chapter 1", "test 242424", "text"));
+    public static final PageAlmanac TEST_2424234225 = VOID_LOTUS.addPage(new PageAlmanac("Title Chapter 2", "test 242424", "text"));
+    public static final PageAlmanac TEST_24242342225 = VOID_LOTUS.addPage(new PageAlmanac("Title Chapter 3", "test 242424", "text"));
 
 }

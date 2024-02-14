@@ -236,11 +236,19 @@ public class AlmanacScreen extends Screen {
     public void renderCategories(GuiGraphics guiGraphics, int pX, int pY) {
         for (int i = 0; i < Almanac.CATEGORIES.size(); i++) {
             CategoryAlmanac category = Almanac.CATEGORIES.get(i);
-            guiGraphics.blit(INDEX_PAGE, pX - 21, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
-            guiGraphics.renderFakeItem(category.getIcon(), pX - 9, pY + 12 + (i * 21));
-            guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9, pY + 12 + (i * 21), null);
+            if (category == this.openCategory) {
+                guiGraphics.blit(INDEX_PAGE, pX - 21 - 10, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
+                guiGraphics.renderFakeItem(category.getIcon(), pX - 9 - 10, pY + 12 + (i * 21));
+                guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9 - 10, pY + 12 + (i * 21), null);
 
-            spatialIndex.add(category, pX - 21, pY + 12 + (i * 21), 37, 18);
+                spatialIndex.add(category, pX - 21 - 10, pY + 12 + (i * 21), 48, 18);
+            } else {
+                guiGraphics.blit(INDEX_PAGE, pX - 21, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
+                guiGraphics.renderFakeItem(category.getIcon(), pX - 9, pY + 12 + (i * 21));
+                guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9, pY + 12 + (i * 21), null);
+
+                spatialIndex.add(category, pX - 21, pY + 12 + (i * 21), 37, 18);
+            }
         }
     }
 

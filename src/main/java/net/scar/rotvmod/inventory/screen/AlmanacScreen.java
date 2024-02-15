@@ -1,10 +1,8 @@
 package net.scar.rotvmod.inventory.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.BookViewScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,6 +22,8 @@ public class AlmanacScreen extends Screen {
 
     protected int pageLeftWidth = 20 - 7;
     protected int pageRightWidth = 160 - 7;
+
+    int[] categoryOffsets = new int[Almanac.CATEGORIES.size()];
 
     private String location = "index";
     private CategoryAlmanac openCategory = Almanac.CATEGORY_1;
@@ -138,6 +138,10 @@ public class AlmanacScreen extends Screen {
         if (!foundItems.isEmpty()) {
             for (Object item : foundItems) {
                 if (item instanceof CategoryAlmanac category) {
+                    if (categoryOffsets[Almanac.CATEGORIES.indexOf(category)] < 20) {
+                        categoryOffsets[Almanac.CATEGORIES.indexOf(category)]++;
+                    }
+
                     Component text = category != this.openCategory
                             ? Component.literal("Click to open category")
                             : Component.literal("This category open");
@@ -168,6 +172,13 @@ public class AlmanacScreen extends Screen {
                         }
                     }
                 }
+
+            }
+        }
+
+        for (int i = 0; i < categoryOffsets.length; i++) {
+            if (categoryOffsets[i] > 0) {
+                categoryOffsets[i]--; // Уменьшаем значение на 1, если оно больше 0
             }
         }
 
@@ -243,11 +254,11 @@ public class AlmanacScreen extends Screen {
 
                 spatialIndex.add(category, pX - 21 - 10, pY + 12 + (i * 21), 48, 18);
             } else {
-                guiGraphics.blit(INDEX_PAGE, pX - 21, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
-                guiGraphics.renderFakeItem(category.getIcon(), pX - 9, pY + 12 + (i * 21));
-                guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9, pY + 12 + (i * 21), null);
+                guiGraphics.blit(INDEX_PAGE, pX - 21 - categoryOffsets[i] / 2, pY + 12 + (i * 21), 306, i * 19, 60, 19, 512, 512);
+                guiGraphics.renderFakeItem(category.getIcon(), pX - 9 - categoryOffsets[i] / 2, pY + 12 + (i * 21));
+                guiGraphics.renderItemDecorations(this.font, category.getIcon(), pX - 9 - categoryOffsets[i] / 2, pY + 12 + (i * 21), null);
 
-                spatialIndex.add(category, pX - 21, pY + 12 + (i * 21), 37, 18);
+                spatialIndex.add(category, pX - 21 - categoryOffsets[i] / 2, pY + 12 + (i * 21), 37, 18);
             }
         }
     }
